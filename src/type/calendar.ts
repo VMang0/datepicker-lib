@@ -44,6 +44,17 @@ export type CalendarProps = {
   holidays?: HolidayType[];
 };
 
+export type ComponentsProps = CalendarProps & {
+  direction: ArrowDirection;
+  mode: CalendarMode;
+  selectedMonth: MonthInfoType;
+  selectedYear: number;
+  selectedYearsInterval: number[];
+  setSelectedYear: (value: number) => void;
+  setSelectedYearsInterval: (value: number[]) => void;
+  setSelectedMonth: (value: MonthInfoType) => void;
+};
+
 export type CalendarStateType = {
   calendarDays: DateType[];
   selectedDay: DateType;
