@@ -2,3 +2,4 @@ node_modules
 /.git
 yarn.lock
 /.eslintrc.js
+/.yarn/releases/yarn-1.22.22.cjs

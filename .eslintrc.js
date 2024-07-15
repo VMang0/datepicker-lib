@@ -50,6 +50,9 @@ module.exports = {
         ],
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
       },
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
     },
   },
   rules: {

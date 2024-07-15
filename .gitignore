@@ -4,4 +4,4 @@
 /dist
 *storybook.log
 .idea
-.yarn
+.npmrc

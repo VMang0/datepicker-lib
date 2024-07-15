@@ -1,14 +1,19 @@
 import typescript from '@rollup/plugin-typescript';
-import nodeResolve from '@rollup/plugin-node-resolve';
-import postcss from 'rollup-plugin-postcss';
-import url from '@rollup/plugin-url';
+import resolve from '@rollup/plugin-node-resolve';
 import svgr from '@svgr/rollup';
 import terser from '@rollup/plugin-terser';
 import { dts } from 'rollup-plugin-dts';
 import alias from '@rollup/plugin-alias';
+import babel from "@rollup/plugin-babel";
 import path from 'path';
+import { fileURLToPath } from 'url';
+import commonjs from '@rollup/plugin-commonjs';
 
 import packageJson from "./package.json" assert { type: 'json' };
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const projectRootDir = path.resolve(__dirname);
 
@@ -25,8 +30,10 @@ export default [
         format: 'esm'
       }
     ],
-    external: ['react'],
+    external: ['react', 'styled-components'],
     plugins: [
+      commonjs(),
+      terser(),
       alias({
         entries: [
           { find: '@components', replacement: path.resolve(projectRootDir, 'src/components') },
@@ -43,23 +50,17 @@ export default [
           { find: '@type', replacement: path.resolve(projectRootDir, 'src/type') },
         ],
       }),
-      nodeResolve({
-        browser: true,
-        extensions: ['.js', '.ts', '.json'],
-      }),
+      resolve(),
       typescript({
         tsconfig: './tsconfig.json',
         exclude: ['**/*.stories.tsx']
       }),
-      postcss({
-        extract: 'index.css',
-        modules: true,
-        use: ['sass'],
-        minimize: true
+      babel({
+        exclude: "node_modules/**",
+        presets: ['@babel/preset-react', '@babel/preset-typescript'],
+        plugins: ['babel-plugin-styled-components']
       }),
-      url(),
-      svgr({ icon: true }),
-      terser()
+      svgr({ exportType: 'named', jsxRuntime: 'classic' }),
     ]
   },
   {
