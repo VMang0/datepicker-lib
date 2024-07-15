@@ -72,3 +72,16 @@ export type CalendarFuncType = {
   setSelectedYear: (value: number) => void;
   setSelectedYearsInterval: (value: number[]) => void;
 };
+
+export type UseCalendarParamsType = {
+  locale: string;
+  selectedDate: Date;
+  firstWeekDay?: FirstWeekDay;
+  minYear?: number;
+  maxYear?: number;
+};
+
+export type ReturnValuesUseCalendarType = {
+  state: CalendarStateType;
+  functions: CalendarFuncType;
+};

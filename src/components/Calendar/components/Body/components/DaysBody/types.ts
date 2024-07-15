@@ -9,6 +9,7 @@ export type CalendarDayProps = {
   isDateEndPeriod: boolean;
   isHoliday: boolean;
   isWeekendDay: boolean;
+  isDayHaveTasks: boolean;
 };
 
 export type DaysBodyType = BodyType & { openTasks: () => void };

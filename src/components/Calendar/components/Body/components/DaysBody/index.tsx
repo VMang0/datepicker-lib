@@ -8,6 +8,7 @@ import {
 import { DaysBodyType } from '@components/Calendar/components/Body/components/DaysBody/types';
 import { getHolidayName } from '@components/Calendar/components/Body/components/DaysBody/utils/getHolidaysName';
 import { isWeekendDay } from '@components/Calendar/components/Body/components/DaysBody/utils/isWeekendDay';
+import { useTasks } from '@hooks/useTasks';
 import { useWeekDays } from '@hooks/useWeekDays';
 import { DateType } from '@type/calendar';
 import { checkDateIsEqual, checkIsToday } from '@utils/helpers';
@@ -29,6 +30,7 @@ export const DaysBody: FC<DaysBodyType> = memo(
     isShowHolidays,
   }) => {
     const weekDays = useWeekDays({ firstWeekDay, locale });
+    const { tasks } = useTasks();
 
     const onDayClick = (day: DateType) => () => {
       if (!isViewTasks) {
@@ -61,6 +63,7 @@ export const DaysBody: FC<DaysBodyType> = memo(
             const isDateEndPeriod = day.date?.toString() === endDate?.toString();
             const holidayName = isShowHolidays && getHolidayName(day.date, holidays);
             const isWeekend = isShowWeekends && isWeekendDay(day.date);
+            const isDayHaveTasks = isViewTasks && !!tasks[day.date.toString()];
 
             return (
               <CalendarDay
@@ -76,6 +79,7 @@ export const DaysBody: FC<DaysBodyType> = memo(
                 isDateEndPeriod={isDateEndPeriod}
                 isHoliday={!!holidayName}
                 isWeekendDay={isWeekend}
+                isDayHaveTasks={isDayHaveTasks}
               >
                 {day.dayNumber}
               </CalendarDay>

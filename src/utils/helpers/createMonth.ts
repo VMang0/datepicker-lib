@@ -3,10 +3,10 @@ import { MonthInfoType } from '@type/calendar';
 import { createDate } from './createDate';
 import { getMonthNumberOfDays } from './getMonthNumberOfDays';
 
-interface CreateMonthParams {
+type CreateMonthParams = {
   date?: Date;
   locale?: string;
-}
+};
 
 export const createMonth = (params?: CreateMonthParams): MonthInfoType => {
   const date = params?.date ?? new Date();

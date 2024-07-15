@@ -6,6 +6,11 @@ import { BodyType } from '@components/Calendar/components/Body/types';
 import { CalendarMode } from '@constants/calendar';
 
 export const YearsBody: FC<BodyType> = ({ calendarState, setMode, setSelectedYear }) => {
+  const onYearClick = (year: number) => () => {
+    setSelectedYear(year);
+    setMode(CalendarMode.MONTH);
+  };
+
   return (
     <MonthsYearsBodyContainer>
       {calendarState.selectedYearsInterval.map((year) => {
@@ -16,10 +21,7 @@ export const YearsBody: FC<BodyType> = ({ calendarState, setMode, setSelectedYea
           <BodyItem
             key={year}
             aria-hidden
-            onClick={() => {
-              setSelectedYear(year);
-              setMode(CalendarMode.MONTH);
-            }}
+            onClick={onYearClick(year)}
             isCurrentItem={isCurrentYear}
             isSelectedItem={isSelectedYear}
           >

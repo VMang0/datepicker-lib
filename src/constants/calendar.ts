@@ -13,3 +13,11 @@ export enum CalendarMode {
   MONTH = 'month',
   DAY = 'day',
 }
+
+export const YEARS_PERIOD = 12;
+
+export enum TasksStatus {
+  INPROGRESS = 'in-progress',
+  EXPIRED = 'expired',
+  DONE = 'done',
+}

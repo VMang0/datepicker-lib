@@ -7,13 +7,7 @@ import {
   ControlPanelContainer,
   DateLabel,
 } from '@components/TasksBody/components/ControlPanel/styled';
-import { DateType } from '@type/calendar';
-
-type ControlPanelPropsType = {
-  addTask: () => void;
-  closeTasks: () => void;
-  selectedDate: DateType;
-};
+import { ControlPanelPropsType } from '@components/TasksBody/components/ControlPanel/types';
 
 export const ControlPanel: FC<ControlPanelPropsType> = ({ addTask, closeTasks, selectedDate }) => {
   return (

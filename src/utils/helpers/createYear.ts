@@ -1,11 +1,11 @@
 import { createDate } from './createDate';
 import { createMonth } from './createMonth';
 
-interface CreateYearParams {
+type CreateYearParams = {
   year?: number;
   locale?: string;
   monthNumber?: number;
-}
+};
 
 export const createYear = (params?: CreateYearParams) => {
   const locale = params?.locale ?? 'default';

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { TasksStatus } from '@constants/calendar';
 import { useStorage } from '@hooks/useStorage';
 import { TaskMapType, TaskType } from '@type/tasks';
 import { generateUniqueId } from '@utils/helpers/generateUniqueId';
@@ -11,7 +12,7 @@ export const useTasks = ({ date }: { date?: Date } = {}) => {
   const newTask = (): TaskType => ({
     id: generateUniqueId(),
     title: 'Task',
-    status: 'in-progress',
+    status: TasksStatus.INPROGRESS,
   });
 
   const updateTasks = (date: Date, updateFn: (tasks: TaskType[]) => TaskType[]): void => {

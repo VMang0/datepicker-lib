@@ -8,16 +8,17 @@ import {
   TaskItemContainer,
 } from '@components/TasksBody/components/TaskItem/styled';
 import { TaskItemPropsType } from '@components/TasksBody/components/TaskItem/types';
+import { TasksStatus } from '@constants/calendar';
 
 export const TaskItem: FC<TaskItemPropsType> = ({ task, currentTasksDate, updateTask, deleteTask }) => {
   const handleChangeTitle: ChangeEventHandler<HTMLInputElement> = (e) => {
     updateTask(currentTasksDate, task.id, { title: e.target.value });
   };
 
-  const getNextStatus = (currentStatus: 'expired' | 'in-progress' | 'done'): 'expired' | 'in-progress' | 'done' => {
-    if (currentStatus === 'expired') return 'in-progress';
-    if (currentStatus === 'in-progress') return 'done';
-    if (currentStatus === 'done') return 'expired';
+  const getNextStatus = (currentStatus: TasksStatus): TasksStatus => {
+    if (currentStatus === TasksStatus.EXPIRED) return TasksStatus.INPROGRESS;
+    if (currentStatus === TasksStatus.INPROGRESS) return TasksStatus.DONE;
+    if (currentStatus === TasksStatus.DONE) return TasksStatus.EXPIRED;
     return null;
   };
 

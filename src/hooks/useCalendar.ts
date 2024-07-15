@@ -1,25 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 
 import { ArrowDirection, CalendarMode, FirstWeekDay } from '@constants/calendar';
-import { CalendarFuncType, CalendarStateType, DateType } from '@type/calendar';
+import { DateType, ReturnValuesUseCalendarType, UseCalendarParamsType } from '@type/calendar';
 import { createDate, createMonth } from '@utils/helpers';
 import { calculateCalendarDays } from '@utils/helpers/calculateCalendarDays';
 import { getFirstWeekDayIndex } from '@utils/helpers/getFirstWeekDayIndex';
 import { getYearsInterval } from '@utils/helpers/getYearsInterval';
 import { handleArrowClick } from '@utils/helpers/handleArrowClick';
-
-type UseCalendarParams = {
-  locale: string;
-  selectedDate: Date;
-  firstWeekDay?: FirstWeekDay;
-  minYear?: number;
-  maxYear?: number;
-};
-
-type ReturnValuesUseCalendarType = {
-  state: CalendarStateType;
-  functions: CalendarFuncType;
-};
 
 export const useCalendar = ({
   locale = 'default',
@@ -27,15 +14,15 @@ export const useCalendar = ({
   firstWeekDay = FirstWeekDay.MONDAY,
   maxYear = new Date().getFullYear() + 10,
   minYear = new Date().getFullYear(),
-}: UseCalendarParams): ReturnValuesUseCalendarType => {
+}: UseCalendarParamsType): ReturnValuesUseCalendarType => {
   const [mode, setMode] = useState<CalendarMode>(CalendarMode.DAY);
   const [selectedDay, setSelectedDay] = useState(createDate({ date }));
+  const [selectedYear, setSelectedYear] = useState<number>(selectedDay.year);
   const [selectedMonth, setSelectedMonth] = useState(
     createMonth({ date: new Date(selectedDay.year, selectedDay.monthIndex), locale }),
   );
-  const [selectedYear, setSelectedYear] = useState<number>(selectedDay.year);
   const [selectedYearsInterval, setSelectedYearsInterval] = useState<number[]>(
-    getYearsInterval(selectedDay.year, minYear, maxYear),
+    getYearsInterval(minYear, minYear, maxYear),
   );
 
   const firstWeekDayIndex = getFirstWeekDayIndex(firstWeekDay);
