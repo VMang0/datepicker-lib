@@ -8,6 +8,7 @@ import babel from "@rollup/plugin-babel";
 import path from 'path';
 import { fileURLToPath } from 'url';
 import commonjs from '@rollup/plugin-commonjs';
+import external from 'rollup-plugin-peer-deps-external';
 
 import packageJson from "./package.json" assert { type: 'json' };
 
@@ -30,9 +31,11 @@ export default [
         format: 'esm'
       }
     ],
-    external: ['react', 'styled-components'],
+    external: ["react", "react-dom", "styled-components"],
     plugins: [
+      resolve(),
       commonjs(),
+      external(),
       terser(),
       alias({
         entries: [
@@ -50,15 +53,13 @@ export default [
           { find: '@type', replacement: path.resolve(projectRootDir, 'src/type') },
         ],
       }),
-      resolve(),
       typescript({
         tsconfig: './tsconfig.json',
         exclude: ['**/*.stories.tsx']
       }),
       babel({
         exclude: "node_modules/**",
-        presets: ['@babel/preset-react', '@babel/preset-typescript'],
-        plugins: ['babel-plugin-styled-components']
+        presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
       }),
       svgr({ exportType: 'named', jsxRuntime: 'classic' }),
     ]
