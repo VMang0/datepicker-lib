@@ -15,3 +15,7 @@ export const isValidDate = (dateString: string): boolean => {
 
   return date.getFullYear() === year && date.getMonth() === month && date.getDate() === day;
 };
+
+export const isRangeDatesValid = (formattedStart: string, formattedEnd: string) => {
+  return isValidDate(formattedStart) && isValidDate(formattedEnd);
+};
