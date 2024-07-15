@@ -10,7 +10,6 @@ import { fileURLToPath } from 'url';
 import commonjs from '@rollup/plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
 import generatePackageJSON from "rollup-plugin-generate-package-json";
-import styles from 'rollup-plugin-styles';
 
 import packageJson from "./package.json" assert { type: 'json' };
 
@@ -77,7 +76,6 @@ export default [
       }),
       svgr({ exportType: 'named', jsxRuntime: 'classic' }),
       commonjs(),
-      styles(),
     ]
   },
   {

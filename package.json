@@ -82,7 +82,6 @@
     "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-styles": "^4.0.0",
     "storybook": "^8.1.11",
     "styled-components": "^6.1.11",
     "ts-jest": "^29.2.2",
