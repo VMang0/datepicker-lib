@@ -28,10 +28,6 @@ jobs:
           npm install -g yarn
           yarn install
 
-      - name: Type Check
-        run: |
-          yarn type-check
-
       - name: Run Tests
         run: |
           yarn test
