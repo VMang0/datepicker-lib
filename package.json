@@ -1,8 +1,5 @@
 {
-  "name": "@VMang0/datepicker-lib",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/VMang0"
-  },
+  "name": "@vmang0/datepicker-lib",
   "version": "1.0.0",
   "main": "dist/esm/index.js",
   "module": "dist/cjs/index.js",
@@ -19,7 +16,7 @@
     "build-storybook": "storybook build",
     "lint": "eslint src/**/*.ts src/**/*.tsx",
     "lint:fix": "eslint --fix src/**/*.ts src/**/*.tsx --color",
-    "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static"
+    "deploy-storybook": "yarn build-storybook"
   },
   "repository": "https://github.com/VMang0/datepicker-lib.git",
   "author": "VMang0 <valeriakorolkova2703@gmail.com>",
@@ -91,9 +88,7 @@
   },
   "peerDependencies": {
     "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "dependencies": {
+    "react-dom": "18.2.0",
     "styled-components": "^6.1.11"
   },
   "husky": {
