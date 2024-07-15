@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.10.0'
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm install -g yarn
+          yarn install
+
+      - name: Lint
+        run: |
+          yarn lint
+
+      - name: Type Check
+        run: |
+          yarn type-check
+
+      - name: Run Tests
+        run: |
+          yarn test
+
+      - name: Build
+        run: |
+          yarn build
+
+      - name: Build Storybook
+        run: |
+          yarn build-storybook
+
+      - name: Deploy Storybook
+        if: github.ref == 'refs/heads/main'
+        run: |
+          yarn deploy-storybook

@@ -4,7 +4,7 @@ export default {
     [
       'module-resolver',
       {
-        root: ['./src'],
+        root: ['.'],
         alias: {
           '@components': './src/components',
           '@pages': './src/pages',
