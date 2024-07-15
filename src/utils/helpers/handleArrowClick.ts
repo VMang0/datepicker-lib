@@ -1,4 +1,4 @@
-import { ArrowDirection, CalendarMode } from '@constants/calendar';
+import { ArrowDirection, CalendarMode, YEARS_PERIOD } from '@constants/calendar';
 import { ComponentsProps } from '@type/calendar';
 import { createMonth } from '@utils/helpers/createMonth';
 import { getYearsInterval } from '@utils/helpers/getYearsInterval';
@@ -16,21 +16,14 @@ export const handleArrowClick = ({
   setSelectedMonth,
   locale,
 }: Partial<ComponentsProps>): null => {
-  if (mode === CalendarMode.YEAR && direction === ArrowDirection.LEFT) {
-    let newIntervalStart = selectedYearsInterval[0] - 12;
-    if (newIntervalStart < minYear) {
-      newIntervalStart = minYear;
+  if (mode === CalendarMode.YEAR) {
+    let newIntervalStart = selectedYearsInterval[0];
+    if (direction === ArrowDirection.LEFT && newIntervalStart > minYear) {
+      newIntervalStart = selectedYearsInterval[0] - YEARS_PERIOD;
+    } else if (direction === ArrowDirection.RIGHT && newIntervalStart + 10 < maxYear) {
+      newIntervalStart = selectedYearsInterval[0] + YEARS_PERIOD;
     }
-    if (newIntervalStart >= minYear) {
-      setSelectedYearsInterval(getYearsInterval(newIntervalStart, minYear, maxYear));
-    }
-  }
-
-  if (mode === CalendarMode.YEAR && ArrowDirection.RIGHT) {
-    const newIntervalStart = selectedYearsInterval[0] + 12;
-    if (newIntervalStart <= maxYear) {
-      setSelectedYearsInterval(getYearsInterval(newIntervalStart, minYear, maxYear));
-    }
+    setSelectedYearsInterval(getYearsInterval(newIntervalStart, minYear, maxYear));
   }
 
   if (mode === CalendarMode.MONTH && direction === ArrowDirection.LEFT) {
