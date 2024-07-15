@@ -9,6 +9,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import commonjs from '@rollup/plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
+import generatePackageJSON from "rollup-plugin-generate-package-json";
+import styles from 'rollup-plugin-styles';
 
 import packageJson from "./package.json" assert { type: 'json' };
 
@@ -34,7 +36,6 @@ export default [
     external: ["react", "react-dom", "styled-components"],
     plugins: [
       resolve(),
-      commonjs(),
       external(),
       terser(),
       alias({
@@ -60,8 +61,23 @@ export default [
       babel({
         exclude: "node_modules/**",
         presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+        plugins: ["styled-components"],
+      }),
+      generatePackageJSON({
+        outputFolder: "dist",
+        baseContents: (pkg) => ({
+          name: pkg.name,
+          main: "/dist/index.js",
+          peerDependencies: {
+            react: "^18.2.0",
+            "react-dom": "^18.2.0",
+            "styled-components": "^6.1.11",
+          },
+        }),
       }),
       svgr({ exportType: 'named', jsxRuntime: 'classic' }),
+      commonjs(),
+      styles(),
     ]
   },
   {
