@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const MonthsYearsBodyContainer = styled.div`
-  font-weight: 600;
-  text-align: center;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  gap: ${({ theme }) => theme.gap.s};
   grid-template-rows: repeat(4, 1fr);
-  gap: 1px 1px;
-  font-size: 13px;
+  grid-template-columns: repeat(3, 1fr);
+  font-size: ${({ theme }) => theme.fontSize.s};
+  font-weight: ${({ theme }) => theme.fontWeight[600]};
 `;

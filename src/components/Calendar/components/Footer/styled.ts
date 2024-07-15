@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  width: 100%;
-  cursor: pointer;
-  padding: 10px;
   border: none;
-  border-top: 1px solid #e1e1e1;
+  cursor: pointer;
   background-color: transparent;
+  width: ${({ theme }) => theme.sizes.full};
+  padding: ${({ theme }) => theme.spaces.s};
+  border-top: 1px solid ${({ theme }) => theme.colors.gray[200]};
   &:hover {
     background-color: transparent;
   }

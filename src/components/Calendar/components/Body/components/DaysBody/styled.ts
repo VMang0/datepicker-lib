@@ -3,37 +3,38 @@ import styled from 'styled-components';
 import { CalendarDayProps } from '@components/Calendar/components/Body/components/DaysBody/types';
 
 export const CalendarWeek = styled.div`
-  height: 20px;
-  font-weight: 700;
-  font-size: 14px;
+  display: grid;
   text-align: center;
   align-items: center;
-  display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 1px 1px;
+  gap: ${({ theme }) => theme.gap.s};
+  height: ${({ theme }) => theme.sizes.m};
+  font-weight: ${({ theme }) => theme.fontWeight[700]};
+  font-size: ${({ theme }) => theme.fontSize.m};
 `;
 
 export const CalendarDays = styled.div`
-  font-size: 13px;
-  font-weight: 400;
-  text-align: center;
   display: grid;
+  text-align: center;
   align-items: center;
-  grid-template-columns: repeat(7, 1fr);
   grid-template-rows: 1fr;
-  gap: 1px 1px;
+  grid-template-columns: repeat(7, 1fr);
+  gap: ${({ theme }) => theme.gap.s};
+  font-size: ${({ theme }) => theme.fontSize.s};
+  font-weight: ${({ theme }) => theme.fontWeight[400]};
 `;
 
 export const CalendarDay = styled.div<CalendarDayProps>`
-  position: relative;
-  border-radius: ${({ isInRange, isDateStartPeriod, isDateEndPeriod }) => {
-    if (isInRange && !isDateStartPeriod && !isDateEndPeriod) return 0;
-    if (isDateStartPeriod) return '8px 0 0 8px';
-    if (isDateEndPeriod) return '0 8px 8px 0';
-    return '8px';
-  }};
-  padding: 8px;
   cursor: pointer;
+  position: relative;
+  padding: ${({ theme }) => theme.spaces.xs};
+  outline: ${({ isDayHaveTasks, theme }) => (isDayHaveTasks ? `1px solid ${theme.colors.blue.DEFAULT}` : 'none')};
+  border-radius: ${({ isInRange, isDateStartPeriod, isDateEndPeriod, theme }) => {
+    if (isInRange && !isDateStartPeriod && !isDateEndPeriod) return 0;
+    if (isDateStartPeriod) return `${theme.borderRadius.m} 0 0 ${theme.borderRadius.m}`;
+    if (isDateEndPeriod) return `0 ${theme.borderRadius.m} ${theme.borderRadius.m} 0`;
+    return theme.borderRadius.m;
+  }};
   color: ${({
     isAdditionalDay,
     isSelectedDay,
@@ -45,7 +46,7 @@ export const CalendarDay = styled.div<CalendarDayProps>`
     isHoliday,
   }) => {
     if (isAdditionalDay && !isWeekendDay && !isHoliday) return theme.colors.gray[400];
-    if (isInRange && !isDateStartPeriod && !isDateEndPeriod) return '#2f80ed';
+    if (isInRange && !isDateStartPeriod && !isDateEndPeriod) return theme.colors.blue.DEFAULT;
     if (isSelectedDay || isDateStartPeriod || isDateEndPeriod) return theme.colors.white.DEFAULT;
     return theme.colors.black.DEFAULT;
   }};
@@ -59,12 +60,15 @@ export const CalendarDay = styled.div<CalendarDayProps>`
     isWeekendDay,
     theme,
   }) => {
-    if ((isSelectedDay || isDateEndPeriod) && !isDateStartPeriod) return '#2f80ed';
+    if ((isSelectedDay || isDateEndPeriod) && !isDateStartPeriod) return theme.colors.blue.DEFAULT;
     if (isToday && !isInRange) return theme.colors.gray[200];
-    if (isDateStartPeriod) return 'rgba(47, 128, 237, 0.6)';
-    if (isHoliday && !isWeekendDay && !isInRange) return '#e9f0f5';
-    if (isWeekendDay && !isInRange) return '#ffe0e1';
-    if (isInRange && !isDateStartPeriod && !isDateEndPeriod) return 'rgba(47, 128, 237, 0.1)';
+    if (isDateStartPeriod) return theme.colors.blue[200];
+    if (isHoliday && !isWeekendDay && !isInRange) return theme.colors.gray[300];
+    if (isWeekendDay && !isInRange) return theme.colors.red.DEFAULT;
+    if (isInRange && !isDateStartPeriod && !isDateEndPeriod) return theme.colors.blue[100];
     return 'transparent';
   }};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray[100]};
+  }
 `;

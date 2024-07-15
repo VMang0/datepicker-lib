@@ -6,35 +6,35 @@ import { ReactComponent as Calendar } from '@assets/icons/сalendar-icon.svg';
 export const DateInputContainer = styled.div<{ isError: boolean }>`
   display: flex;
   align-items: center;
-  border: 1px solid ${({ isError }) => (isError ? 'red' : '#ddd')};
   box-sizing: border-box;
-  border-radius: 8px;
-  padding: 8px 15px;
-  width: 250px;
-  margin-bottom: 8px;
+  width: ${({ theme }) => theme.sizes.xl};
+  margin-bottom: ${({ theme }) => theme.spaces.xs};
+  border-radius: ${({ theme }) => theme.borderRadius.m};
+  border: 1px solid ${({ isError, theme }) => (isError ? theme.colors.red[100] : theme.colors.gray[300])};
+  padding: ${({ theme }) => `${theme.spaces.s} ${theme.spaces.xs}`};
 `;
 
 export const CalendarIcon = styled(Calendar)`
-  margin-right: 8px;
-  width: 16px;
-  height: 16px;
-  color: #888;
+  margin-right: ${({ theme }) => theme.spaces.xs};
+  width: ${({ theme }) => theme.sizes.xs};
+  height: ${({ theme }) => theme.sizes.xs};
+  color: ${({ theme }) => theme.colors.gray[600]};
 `;
 
 export const ClearIcon = styled(Clear)`
-  margin-left: auto;
-  color: #888;
-  width: 16px;
-  height: 16px;
   cursor: pointer;
+  margin-left: auto;
+  color: ${({ theme }) => theme.colors.gray[600]};
+  width: ${({ theme }) => theme.sizes.xs};
+  height: ${({ theme }) => theme.sizes.xs};
 `;
 
 export const Input = styled.input`
   border: none;
   outline: none;
-  font-weight: 400;
-  font-size: 15px;
-  color: #333;
-  width: 100%;
   padding: 0;
+  width: ${({ theme }) => theme.sizes.full};
+  font-size: ${({ theme }) => theme.fontSize.l};
+  color: ${({ theme }) => theme.colors.gray[600]};
+  font-weight: ${({ theme }) => theme.fontWeight[400]};
 `;

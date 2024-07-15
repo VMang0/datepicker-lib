@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 export const TasksListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
   flex: 1;
-  max-height: 150px;
+  display: flex;
   overflow-y: auto;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.gap.m};
+  max-height: ${({ theme }) => theme.sizes.l};
 `;
+
+export const Label = styled.span``;

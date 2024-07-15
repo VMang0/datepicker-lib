@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { ReactComponent as IconDelete } from '@assets/icons/task-remove-icon.svg';
+import { TasksStatus } from '@constants/calendar';
 
 export const TaskItemContainer = styled.div`
   display: flex;
@@ -10,33 +11,31 @@ export const TaskItemContainer = styled.div`
 `;
 
 export const StatusBadge = styled.button<{ status: string }>`
-  width: 10px;
-  height: 10px;
-  border: none;
   padding: 0;
+  border: none;
   cursor: pointer;
-  border-radius: 50px;
-  background-color: ${({ status }) => {
-    if (status === 'in-progress') return 'yellow';
-    if (status === 'expired') return 'red';
-    return 'green';
+  width: ${({ theme }) => theme.sizes.xxs};
+  height: ${({ theme }) => theme.sizes.xxs};
+  border-radius: ${({ theme }) => theme.borderRadius.l};
+  outline: 1px solid ${({ theme }) => theme.colors.gray[500]};
+  background-color: ${({ status, theme }) => {
+    if (status === TasksStatus.INPROGRESS) return theme.colors.yellow.DEFAULT;
+    if (status === TasksStatus.EXPIRED) return theme.colors.red.DEFAULT;
+    return theme.colors.green.DEFAULT;
   }};
 `;
 
 export const DeleteButton = styled.button`
+  border: none;
   display: flex;
   align-items: center;
-  border: none;
   background-color: transparent;
 `;
 
 export const DeleteIcon = styled(IconDelete)`
   cursor: pointer;
-  width: 16px;
-  height: 17px;
-  path {
-    fill: ${({ theme }) => theme.colors.black.DEFAULT};
-  }
+  width: ${({ theme }) => theme.sizes.xs};
+  height: ${({ theme }) => theme.sizes.s};
 `;
 
 export const TaskInput = styled.input`

@@ -22,8 +22,8 @@ export const DateLabel = styled.span`
 
 export const ArrowBack = styled(ArrowBackIcon)`
   cursor: pointer;
-  width: 16px;
-  height: 17px;
+  width: ${({ theme }) => theme.sizes.xs};
+  height: ${({ theme }) => theme.sizes.s};
   path {
     fill: ${({ theme }) => theme.colors.black.DEFAULT};
   }
@@ -31,9 +31,6 @@ export const ArrowBack = styled(ArrowBackIcon)`
 
 export const AddTaskIcon = styled(TaskAddIcon)`
   cursor: pointer;
-  width: 16px;
-  height: 17px;
-  path {
-    fill: ${({ theme }) => theme.colors.black.DEFAULT};
-  }
+  width: ${({ theme }) => theme.sizes.xs};
+  height: ${({ theme }) => theme.sizes.s};
 `;

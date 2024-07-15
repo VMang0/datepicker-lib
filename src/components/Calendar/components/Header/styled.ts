@@ -4,17 +4,17 @@ import { ReactComponent as ArrowIcon } from '@assets/icons/arrow-icon.svg';
 
 export const HeaderContainer = styled.div`
   position: relative;
-  border-radius: 5px 5px 0 0;
+  border-radius: ${({ theme }) => `${theme.borderRadius.s} ${theme.borderRadius.s} 0 0`};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 10px 0;
+  padding: ${({ theme }) => `${theme.spaces.m} ${theme.spaces.s} 0`};
 `;
 
 export const LeftArrow = styled(ArrowIcon)`
   cursor: pointer;
-  width: 16px;
-  height: 17px;
+  width: ${({ theme }) => theme.sizes.xs};
+  height: ${({ theme }) => theme.sizes.s};
   path {
     fill: ${({ theme }) => theme.colors.black.DEFAULT};
   }
@@ -25,9 +25,9 @@ export const RightArrow = styled(LeftArrow)`
 `;
 
 export const HeaderLabel = styled.div`
-  font-weight: 700;
-  font-size: 14px;
   cursor: pointer;
+  font-weight: ${({ theme }) => theme.fontWeight[700]};
+  font-size: ${({ theme }) => theme.fontSize.m};
   color: ${({ theme }) => theme.colors.black.DEFAULT};
 `;
 
@@ -42,7 +42,7 @@ export const ArrowButton = styled.button`
   }
   &:disabled {
     path {
-      fill: ${({ theme }) => theme.colors.green[300]};
+      fill: ${({ theme }) => theme.colors.green.DEFAULT};
     }
   }
 `;
