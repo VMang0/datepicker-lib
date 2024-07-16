@@ -13,4 +13,5 @@ export type DateInputPropsType = {
   selectedDate: Date;
   isClearDate: boolean;
   onFocus: () => void;
+  isCalendarOpen: boolean;
 };

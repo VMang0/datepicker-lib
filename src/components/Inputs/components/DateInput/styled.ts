@@ -3,15 +3,24 @@ import styled from 'styled-components';
 import { ReactComponent as Clear } from '@assets/icons/clear-icon.svg';
 import { ReactComponent as Calendar } from '@assets/icons/сalendar-icon.svg';
 
-export const DateInputContainer = styled.div<{ isError: boolean }>`
+export const DateInputContainer = styled.div<{ isError: boolean; isCalendarOpen: boolean }>`
   display: flex;
   align-items: center;
   box-sizing: border-box;
   width: ${({ theme }) => theme.sizes.xl};
   margin-bottom: ${({ theme }) => theme.spaces.xs};
   border-radius: ${({ theme }) => theme.borderRadius.m};
-  border: 1px solid ${({ isError, theme }) => (isError ? theme.colors.red[100] : theme.colors.gray[300])};
   padding: ${({ theme }) => `${theme.spaces.s} ${theme.spaces.xs}`};
+  transition: border-color 0.2s ease-in-out;
+  border: 1px solid
+    ${({ isError, isCalendarOpen, theme }) => {
+      if (isCalendarOpen && !isError) return theme.colors.blue.DEFAULT;
+      if (isError) return theme.colors.red[100];
+      return theme.colors.gray[300];
+    }};
+  &:focus-within {
+    border-color: ${({ isError, theme }) => (isError ? theme.colors.red[100] : theme.colors.blue.DEFAULT)};
+  }
 `;
 
 export const CalendarIcon = styled(Calendar)`

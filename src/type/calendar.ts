@@ -26,6 +26,12 @@ export type MonthInfoType = {
   createMonthDays: () => DateType[];
 };
 
+export type DayOfRange = {
+  year: number;
+  month: number;
+  day: number;
+};
+
 export type CalendarProps = {
   locale?: string;
   selectedDate?: Date;
@@ -37,8 +43,8 @@ export type CalendarProps = {
   isViewTasks?: boolean;
   footerTitle?: string;
   firstWeekDay?: FirstWeekDay;
-  maxYear?: number;
-  minYear?: number;
+  maxRangeDate?: DayOfRange;
+  minRangeDate?: DayOfRange;
   isShowWeekends?: boolean;
   isShowHolidays?: boolean;
   holidays?: HolidayType[];
@@ -77,11 +83,14 @@ export type UseCalendarParamsType = {
   locale: string;
   selectedDate: Date;
   firstWeekDay?: FirstWeekDay;
-  minYear?: number;
-  maxYear?: number;
 };
 
 export type ReturnValuesUseCalendarType = {
   state: CalendarStateType;
   functions: CalendarFuncType;
+};
+
+export type CalendarRange = {
+  minDate: DayOfRange;
+  maxDate: DayOfRange;
 };

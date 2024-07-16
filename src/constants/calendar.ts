@@ -21,3 +21,8 @@ export enum TasksStatus {
   EXPIRED = 'expired',
   DONE = 'done',
 }
+
+export const CALENDAR_RANGE = {
+  minDate: { year: 1900, month: 1, day: 1 },
+  maxDate: { year: 2300, month: 12, day: 31 },
+};

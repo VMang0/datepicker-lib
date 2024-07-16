@@ -6,8 +6,17 @@ import { formatDateToMask } from '@components/Inputs/utils/formatDateToMask';
 import { getDateFromSlashType } from '@components/Inputs/utils/getDateFromSlashType';
 import { isValidDate } from '@components/Inputs/utils/isValidDate';
 import { parseDateToMask } from '@components/Inputs/utils/parseDateToMask';
+import { checkIsDateInCalendarRange } from '@utils/helpers/checkIsDateInCalendarRange';
 
-export const DateInput: FC<DateInputPropsType> = ({ selectDate, selectedDate, isClearDate = true, onFocus }) => {
+export const DateInput: FC<DateInputPropsType> = ({
+  selectDate,
+  selectedDate,
+  isClearDate = true,
+  onFocus,
+  isCalendarOpen,
+  minRangeDate = { year: new Date().getFullYear() - 74, month: 12, day: 1 },
+  maxRangeDate = { year: new Date().getFullYear() + 74, month: 12, day: 1 },
+}) => {
   const [date, setDate] = useState<string>(parseDateToMask(selectedDate));
   const [isInputError, setIsInputError] = useState(false);
 
@@ -15,8 +24,13 @@ export const DateInput: FC<DateInputPropsType> = ({ selectDate, selectedDate, is
     const { value } = e.target;
     const formattedValue = formatDateToMask(value);
     setDate(formattedValue);
+    const isDateInCalendarRange = checkIsDateInCalendarRange(
+      maxRangeDate,
+      minRangeDate,
+      getDateFromSlashType(formattedValue),
+    );
 
-    if (formattedValue.length === 10 && isValidDate(formattedValue)) {
+    if (formattedValue.length === 10 && isValidDate(formattedValue) && isDateInCalendarRange) {
       setIsInputError(false);
       selectDate(getDateFromSlashType(formattedValue));
     } else {
@@ -35,7 +49,7 @@ export const DateInput: FC<DateInputPropsType> = ({ selectDate, selectedDate, is
   }, [selectedDate]);
 
   return (
-    <DateInputContainer isError={isInputError}>
+    <DateInputContainer isError={isInputError} isCalendarOpen={isCalendarOpen}>
       <CalendarIcon />
       <Input
         type="text"

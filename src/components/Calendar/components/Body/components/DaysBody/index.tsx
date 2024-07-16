@@ -12,7 +12,8 @@ import { useTasks } from '@hooks/useTasks';
 import { useWeekDays } from '@hooks/useWeekDays';
 import { DateType } from '@type/calendar';
 import { checkDateIsEqual, checkIsToday } from '@utils/helpers';
-import { checkDateInRange } from '@utils/helpers/checkDateInRange';
+import { checkDateInSelectedRange } from '@utils/helpers/checkDateInSelectedRange';
+import { checkIsDateInCalendarRange } from '@utils/helpers/checkIsDateInCalendarRange';
 
 export const DaysBody: FC<DaysBodyType> = memo(
   ({
@@ -26,20 +27,22 @@ export const DaysBody: FC<DaysBodyType> = memo(
     openTasks,
     isViewTasks,
     holidays,
+    maxRangeDate,
+    minRangeDate,
     isShowWeekends,
     isShowHolidays,
   }) => {
     const weekDays = useWeekDays({ firstWeekDay, locale });
     const { tasks } = useTasks();
 
-    const onDayClick = (day: DateType) => () => {
-      if (!isViewTasks) {
+    const onDayClick = (day: DateType, isDayInRange: boolean) => () => {
+      if (!isViewTasks && isDayInRange) {
         setSelectedDay(day);
         selectDate(day.date);
       }
     };
-    const onDayDoubleClick = (day: DateType) => () => {
-      if (isViewTasks) {
+    const onDayDoubleClick = (day: DateType, isDayInRange: boolean) => () => {
+      if (isViewTasks && isDayInRange) {
         setSelectedDay(day);
         selectDate(day.date);
         openTasks();
@@ -58,19 +61,20 @@ export const DaysBody: FC<DaysBodyType> = memo(
             const isToday = checkIsToday(day.date);
             const isSelectedDay = checkDateIsEqual(day.date, calendarState.selectedDay.date);
             const isAdditionalDay = day.monthIndex !== calendarState.selectedMonth.monthIndex;
-            const isInRange = startDate && endDate && checkDateInRange(day.date, startDate, endDate);
+            const isInRange = startDate && endDate && checkDateInSelectedRange(day.date, startDate, endDate);
             const isDateStartPeriod = day.date?.toString() === startDate?.toString();
             const isDateEndPeriod = day.date?.toString() === endDate?.toString();
             const holidayName = isShowHolidays && getHolidayName(day.date, holidays);
             const isWeekend = isShowWeekends && isWeekendDay(day.date);
             const isDayHaveTasks = isViewTasks && !!tasks[day.date.toString()];
+            const isDayInRange = checkIsDateInCalendarRange(maxRangeDate, minRangeDate, day.date);
 
             return (
               <CalendarDay
                 key={`${day.dayNumber}-${day.monthIndex}`}
                 aria-hidden
-                onClick={onDayClick(day)}
-                onDoubleClick={onDayDoubleClick(day)}
+                onClick={onDayClick(day, isDayInRange)}
+                onDoubleClick={onDayDoubleClick(day, isDayInRange)}
                 isAdditionalDay={isAdditionalDay}
                 isSelectedDay={isSelectedDay}
                 isToday={isToday}
@@ -80,6 +84,7 @@ export const DaysBody: FC<DaysBodyType> = memo(
                 isHoliday={!!holidayName}
                 isWeekendDay={isWeekend}
                 isDayHaveTasks={isDayHaveTasks}
+                isDayNotInRange={!isDayInRange}
               >
                 {day.dayNumber}
               </CalendarDay>

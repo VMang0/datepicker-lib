@@ -12,8 +12,6 @@ export const useCalendar = ({
   locale = 'default',
   selectedDate: date,
   firstWeekDay = FirstWeekDay.MONDAY,
-  maxYear = new Date().getFullYear() + 10,
-  minYear = new Date().getFullYear(),
 }: UseCalendarParamsType): ReturnValuesUseCalendarType => {
   const [mode, setMode] = useState<CalendarMode>(CalendarMode.DAY);
   const [selectedDay, setSelectedDay] = useState(createDate({ date }));
@@ -21,9 +19,8 @@ export const useCalendar = ({
   const [selectedMonth, setSelectedMonth] = useState(
     createMonth({ date: new Date(selectedDay.year, selectedDay.monthIndex), locale }),
   );
-  const [selectedYearsInterval, setSelectedYearsInterval] = useState<number[]>(
-    getYearsInterval(minYear, minYear, maxYear),
-  );
+
+  const [selectedYearsInterval, setSelectedYearsInterval] = useState<number[]>(getYearsInterval(date.getFullYear()));
 
   const firstWeekDayIndex = getFirstWeekDayIndex(firstWeekDay);
 
@@ -41,8 +38,6 @@ export const useCalendar = ({
       selectedMonth,
       selectedYear,
       selectedYearsInterval,
-      minYear,
-      maxYear,
       locale,
       setSelectedYear,
       setSelectedYearsInterval,

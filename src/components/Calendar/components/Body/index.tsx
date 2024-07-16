@@ -21,6 +21,8 @@ export const Body: FC<BodyType> = ({
   setSelectedYear,
   isViewTasks,
   holidays,
+  maxRangeDate,
+  minRangeDate,
   isShowWeekends,
   isShowHolidays,
 }) => {
@@ -42,6 +44,8 @@ export const Body: FC<BodyType> = ({
           openTasks={handleTaskPanel}
           isViewTasks={isViewTasks}
           holidays={holidays}
+          maxRangeDate={maxRangeDate}
+          minRangeDate={minRangeDate}
           isShowWeekends={isShowWeekends}
           isShowHolidays={isShowHolidays}
         />
@@ -52,10 +56,19 @@ export const Body: FC<BodyType> = ({
           locale={locale}
           setSelectedMonthByIndex={setSelectedMonthByIndex}
           setMode={setMode}
+          maxRangeDate={maxRangeDate}
+          minRangeDate={minRangeDate}
         />
       )}
       {calendarState.mode === CalendarMode.YEAR && (
-        <YearsBody calendarState={calendarState} locale={locale} setMode={setMode} setSelectedYear={setSelectedYear} />
+        <YearsBody
+          calendarState={calendarState}
+          locale={locale}
+          setMode={setMode}
+          setSelectedYear={setSelectedYear}
+          maxRangeDate={maxRangeDate}
+          minRangeDate={minRangeDate}
+        />
       )}
       {calendarState.mode === CalendarMode.DAY && isTaskPanelOpen && isViewTasks && (
         <TasksBody closeTasks={handleTaskPanel} selectedDate={calendarState.selectedDay} />

@@ -21,8 +21,8 @@ export const Calendar: FC<CalendarProps> = ({
   isViewTasks = false,
   footerTitle,
   firstWeekDay = FirstWeekDay.MONDAY,
-  maxYear = new Date().getFullYear() + 20,
-  minYear = new Date().getFullYear() - 20,
+  minRangeDate = { year: new Date().getFullYear() - 74, month: 12, day: 1 },
+  maxRangeDate = { year: new Date().getFullYear() + 74, month: 12, day: 1 },
   isShowWeekends = false,
   isShowHolidays = false,
   holidays = Holidays,
@@ -31,8 +31,6 @@ export const Calendar: FC<CalendarProps> = ({
     locale,
     selectedDate: date,
     firstWeekDay,
-    maxYear,
-    minYear,
   });
 
   return (
@@ -57,6 +55,8 @@ export const Calendar: FC<CalendarProps> = ({
           setSelectedYear={functions.setSelectedYear}
           isViewTasks={isViewTasks}
           holidays={holidays}
+          minRangeDate={minRangeDate}
+          maxRangeDate={maxRangeDate}
           isShowWeekends={isShowWeekends}
           isShowHolidays={isShowHolidays}
         />

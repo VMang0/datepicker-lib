@@ -43,6 +43,7 @@ export const withRangeDateInput = (Component: ComponentType<CalendarProps>) => (
         <Component
           startDate={startDate}
           endDate={endDate}
+          selectedDate={startDate}
           selectDate={handleSelectDate}
           isRenderFooter
           handleFooterClick={handleClearRange}
