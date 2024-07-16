@@ -2,8 +2,7 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: ['main', 'master', 'dev']
   pull_request:
     branches:
       - main
@@ -28,6 +27,14 @@ jobs:
           npm install -g yarn
           yarn install
 
+      - name: Lint
+        run: |
+          yarn lint
+
+      - name: Type Check
+        run: |
+          yarn type-check
+
       - name: Run Tests
         run: |
           yarn test
@@ -35,4 +42,13 @@ jobs:
       - name: Build
         run: |
           yarn build
+
+      - name: Build Storybook
+        run: |
+          yarn build-storybook
+
+      - name: Deploy Storybook
+        if: github.ref == 'refs/heads/main'
+        run: |
+          yarn deploy-storybook
 
