@@ -60,22 +60,21 @@ export default [
       babel({
         exclude: "node_modules/**",
         presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
-        plugins: ["styled-components"],
+        plugins: [["babel-plugin-styled-components", { "ssr": true, "displayName": true, "preprocess": false }]],
+        babelHelpers: 'bundled',
       }),
+      svgr({ exportType: 'named', jsxRuntime: 'classic' }),
+      commonjs(),
       generatePackageJSON({
         outputFolder: "dist",
         baseContents: (pkg) => ({
           name: pkg.name,
-          main: "/dist/index.js",
-          peerDependencies: {
-            react: "^18.2.0",
-            "react-dom": "^18.2.0",
-            "styled-components": "^6.1.11",
-          },
+          main: "dist/esm/index.js",
+          module: pkg.module,
+          types: pkg.types,
+          peerDependencies: pkg.peerDependencies,
         }),
       }),
-      svgr({ exportType: 'named', jsxRuntime: 'classic' }),
-      commonjs(),
     ]
   },
   {
