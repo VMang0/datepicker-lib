@@ -59,6 +59,7 @@ export const CalendarDay = styled.div<CalendarDayProps>`
     isDateStartPeriod,
     isDateEndPeriod,
     isHoliday,
+    holidayColor,
     isWeekendDay,
     isDayNotInRange,
     theme,
@@ -66,7 +67,7 @@ export const CalendarDay = styled.div<CalendarDayProps>`
     if ((isSelectedDay || isDateEndPeriod) && !isDateStartPeriod) return theme.colors.blue.DEFAULT;
     if (isToday && !isInRange) return theme.colors.gray[200];
     if (isDateStartPeriod) return theme.colors.blue[200];
-    if (isHoliday && !isWeekendDay && !isInRange) return theme.colors.gray[300];
+    if (isHoliday && !isWeekendDay && !isInRange) return holidayColor;
     if (isWeekendDay && !isInRange) return theme.colors.red.DEFAULT;
     if (isInRange && !isDateStartPeriod && !isDateEndPeriod) return theme.colors.blue[100];
     if (isDayNotInRange) return theme.colors.gray[100];
@@ -74,5 +75,6 @@ export const CalendarDay = styled.div<CalendarDayProps>`
   }};
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray[100]};
+    color: ${({ theme }) => theme.colors.black.DEFAULT};
   }
 `;

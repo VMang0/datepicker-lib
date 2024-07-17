@@ -25,6 +25,7 @@ export const Body: FC<BodyType> = ({
   minRangeDate,
   isShowWeekends,
   isShowHolidays,
+  holidayColor,
 }) => {
   const [isTaskPanelOpen, setIsTaskPanelOpen] = useState(false);
 
@@ -48,6 +49,7 @@ export const Body: FC<BodyType> = ({
           minRangeDate={minRangeDate}
           isShowWeekends={isShowWeekends}
           isShowHolidays={isShowHolidays}
+          holidayColor={holidayColor}
         />
       )}
       {calendarState.mode === CalendarMode.MONTH && (

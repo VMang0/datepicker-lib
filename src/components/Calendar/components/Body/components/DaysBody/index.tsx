@@ -31,6 +31,7 @@ export const DaysBody: FC<DaysBodyType> = memo(
     minRangeDate,
     isShowWeekends,
     isShowHolidays,
+    holidayColor,
   }) => {
     const weekDays = useWeekDays({ firstWeekDay, locale });
     const { tasks } = useTasks();
@@ -82,6 +83,7 @@ export const DaysBody: FC<DaysBodyType> = memo(
                 isDateStartPeriod={isDateStartPeriod}
                 isDateEndPeriod={isDateEndPeriod}
                 isHoliday={!!holidayName}
+                holidayColor={holidayColor}
                 isWeekendDay={isWeekend}
                 isDayHaveTasks={isDayHaveTasks}
                 isDayNotInRange={!isDayInRange}

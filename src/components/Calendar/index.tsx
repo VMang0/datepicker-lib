@@ -5,7 +5,7 @@ import { Footer } from '@components/Calendar/components/Footer';
 import { Header } from '@components/Calendar/components/Header';
 import { CalendarContainer } from '@components/Calendar/styled';
 import { ErrorBoundary } from '@components/ErrorBoundary';
-import { FirstWeekDay } from '@constants/calendar';
+import { FirstWeekDay, HOLIDAY_COLOR } from '@constants/calendar';
 import { Holidays } from '@constants/holidays';
 import { useCalendar } from '@hooks/useCalendar';
 import { CalendarProps } from '@type/calendar';
@@ -26,6 +26,8 @@ export const Calendar: FC<CalendarProps> = ({
   isShowWeekends = false,
   isShowHolidays = false,
   holidays = Holidays,
+  holidayColor = HOLIDAY_COLOR,
+  styledCalendarPosition = 'absolute',
 }) => {
   const { functions, state } = useCalendar({
     locale,
@@ -34,7 +36,7 @@ export const Calendar: FC<CalendarProps> = ({
   });
 
   return (
-    <CalendarContainer data-testid="calendar">
+    <CalendarContainer data-testid="calendar" position={styledCalendarPosition}>
       <ErrorBoundary>
         <Header
           locale={locale}
@@ -59,6 +61,7 @@ export const Calendar: FC<CalendarProps> = ({
           maxRangeDate={maxRangeDate}
           isShowWeekends={isShowWeekends}
           isShowHolidays={isShowHolidays}
+          holidayColor={holidayColor}
         />
         {isRenderFooter && <Footer handleClick={handleFooterClick} title={footerTitle} />}
       </ErrorBoundary>

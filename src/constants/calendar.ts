@@ -1,3 +1,5 @@
+import { theme } from '@styled/theme';
+
 export enum ArrowDirection {
   LEFT = 'left',
   RIGHT = 'right',
@@ -26,3 +28,5 @@ export const CALENDAR_RANGE = {
   minDate: { year: 1900, month: 1, day: 1 },
   maxDate: { year: 2300, month: 12, day: 31 },
 };
+
+export const HOLIDAY_COLOR = theme.colors.gray[200];

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FirstWeekDay } from '@constants/calendar';
+import { FirstWeekDay, HOLIDAY_COLOR } from '@constants/calendar';
 import { Holidays } from '@constants/holidays';
 
 import { DatePicker } from './index';
@@ -13,6 +13,7 @@ export default {
     isShowWeekends: false,
     isShowHolidays: false,
     holidays: Holidays,
+    holidayColor: HOLIDAY_COLOR,
   },
   parameters: {
     controls: {
