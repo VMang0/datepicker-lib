@@ -1,10 +1,8 @@
-import { CalendarFuncType, CalendarProps, CalendarStateType, DayOfRange } from '@type/calendar';
+import { CalendarFuncType, CalendarProps, CalendarStateType } from '@type/calendar';
 
 export type BodyType = CalendarProps &
   Partial<CalendarFuncType> & {
     calendarState: CalendarStateType;
-    maxRangeDate?: DayOfRange;
-    minRangeDate?: DayOfRange;
   };
 
 export type BodyItemType = {

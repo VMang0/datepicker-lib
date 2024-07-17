@@ -12,14 +12,14 @@ export const withDateInput = (Component: ComponentType<CalendarProps>) => (props
   return (
     <>
       <DateInput
+        {...props}
         selectedDate={selectedDate}
         selectDate={setSelectedDate}
         onFocus={handleShowCalendar}
         isClearDate
         isCalendarOpen={isCalendarOpen}
-        {...props}
       />
-      {isCalendarOpen && <Component selectDate={setSelectedDate} selectedDate={selectedDate} {...props} />}
+      {isCalendarOpen && <Component {...props} selectDate={setSelectedDate} selectedDate={selectedDate} />}
     </>
   );
 };

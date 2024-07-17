@@ -45,7 +45,10 @@ export const DateInput: FC<DateInputPropsType> = ({
   };
 
   useEffect(() => {
-    setDate(parseDateToMask(selectedDate));
+    const newDate = parseDateToMask(selectedDate);
+    if (newDate !== date) {
+      setDate(newDate);
+    }
   }, [selectedDate]);
 
   return (

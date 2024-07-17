@@ -49,7 +49,10 @@ export const useCalendar = ({
   };
 
   useEffect(() => {
-    setSelectedDay(createDate({ date }));
+    const newDate = createDate({ date });
+    if (newDate !== selectedDay) {
+      setSelectedDay(createDate({ date }));
+    }
   }, [date]);
 
   return {
