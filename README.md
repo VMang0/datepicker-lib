@@ -9,8 +9,9 @@ A simple date picker component for selecting a single date.
 * `selectedDate` (Date): The currently selected date.
 * `selectDate` (Function): Callback function to update the selected date.
 
-### 2. DateRangePicker
+### 2. RangeDatePicker
 A date picker component for selecting a range of dates.
+#### _Props:_
 * `startDate` (Date): The currently selected start date.
 * `endDate` (Date): The currently selected end date.
 * `selectDate` (Function): Callback function to update the selected date range.
@@ -20,6 +21,7 @@ A date picker component for selecting a range of dates.
 
 ### 3. TaskCalendar
 A calendar component for managing tasks.
+#### _Props:_
 * `selectedDate` (Date): The currently selected date.
 * `selectDate` (Function): Callback function to update the selected date.
 * `isViewTasks` (Boolean): Whether to display tasks.
@@ -28,11 +30,12 @@ A calendar component for managing tasks.
 These props can be passed to any of the components (`DatePicker`, `RangeDatePicker`, `TaskCalendar`):
 - `locale` (String): The locale to use for the calendar. Default is `'default'`. Example `es-US`.
 - `firstWeekDay` (String): The first day of the week. Default is `Monday`. Various: `Monday` / `Sunday`
-- `maxYear` (Number): The maximum year to display. Default is the current year + 20.
-- `minYear` (Number): The minimum year to display. Default is the current year - 20.
+- `maxRangeDate` (Object): The maximum date to display. Default is the start of the current year + 74.
+- `minRangeDate` (Object): The minimum date to display. Default is the start of the current year - 74.
 - `isShowWeekends` (Boolean): Whether to show weekends.
 - `isShowHolidays` (Boolean): Whether to show holidays.
 - `holidays` (Array): An array of holidays.
+- `holidayColor` (String): Color of holidays (hex/rgb/rgba string). Default is ```#E1E1E1```
 
 ### Holidays Prop Example:
 ```
@@ -51,6 +54,12 @@ export const Holidays: HolidayType[] = [
   { name: 'Рождество Христово (католическое Рождество)', month: 12, day: 25 },
 ];
 ```
+### MaxRangeDate / MinRangeDate Prop Example:
+```
+minRangeDate = { year: new Date().getFullYear() - 74, month: 12, day: 1 },
+maxRangeDate = { year: new Date().getFullYear() + 74, month: 12, day: 1 },
+```
+
 ## Installation Steps
 
 1. First, you need to install the library:
@@ -72,15 +81,15 @@ import { DatePicker, RangeDatePicker, TaskCalendar } from '@vmang0/datepicker-li
 
 ## Screenshots: 
 ### 1. Range Datepicker
-<img src="img.png" alt="Range Datepicker" width="250"/>
+<img src="src/assets/images/img.png" alt="Range Datepicker" width="250"/>
 
 ### 2. Default Datepicker
-<img src="img_4.png" alt="Default Datepicker" width="250" />
+<img src="src/assets/images/img_4.png" alt="Default Datepicker" width="250" />
 
 ### 3. Task Calendar
-<img src="img_1.png" alt="Task Calendar" width="250"  />
+<img src="src/assets/images/img_1.png" alt="Task Calendar" width="250"  />
 
-<img src="img_2.png" alt="Task Calendar with selected day" width="250" height="230" />
+<img src="src/assets/images/img_2.png" alt="Task Calendar with selected day" width="250" height="230" />
 
 
 
