@@ -11,9 +11,10 @@ import { isWeekendDay } from '@components/Calendar/components/Body/components/Da
 import { useTasks } from '@hooks/useTasks';
 import { useWeekDays } from '@hooks/useWeekDays';
 import { DateType } from '@type/calendar';
-import { checkDateIsEqual, checkIsToday } from '@utils/helpers';
-import { checkDateInSelectedRange } from '@utils/helpers/checkDateInSelectedRange';
-import { checkIsDateInCalendarRange } from '@utils/helpers/checkIsDateInCalendarRange';
+import { checkDateInSelectedRange } from '@utils/checkDateInSelectedRange';
+import { checkDateIsEqual } from '@utils/checkDateIsEqual';
+import { checkIsDateInCalendarRange } from '@utils/checkIsDateInCalendarRange';
+import { checkIsToday } from '@utils/checkIsToday';
 
 export const DaysBody: FC<DaysBodyType> = memo(
   ({

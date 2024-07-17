@@ -2,11 +2,12 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { ArrowDirection, CalendarMode, FirstWeekDay } from '@constants/calendar';
 import { DateType, ReturnValuesUseCalendarType, UseCalendarParamsType } from '@type/calendar';
-import { createDate, createMonth } from '@utils/helpers';
-import { calculateCalendarDays } from '@utils/helpers/calculateCalendarDays';
-import { getFirstWeekDayIndex } from '@utils/helpers/getFirstWeekDayIndex';
-import { getYearsInterval } from '@utils/helpers/getYearsInterval';
-import { handleArrowClick } from '@utils/helpers/handleArrowClick';
+import { calculateCalendarDays } from '@utils/calculateCalendarDays';
+import { createDate } from '@utils/createDate';
+import { createMonth } from '@utils/createMonth';
+import { getFirstWeekDayIndex } from '@utils/getFirstWeekDayIndex';
+import { getYearsInterval } from '@utils/getYearsInterval';
+import { handleArrowClick } from '@utils/handleArrowClick';
 
 export const useCalendar = ({
   locale = 'default',

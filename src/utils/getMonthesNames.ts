@@ -1,4 +1,4 @@
-import { createDate } from './createDate';
+import { createDate } from '@utils/createDate';
 
 export const getMonthesNames = (locale: string = 'default') => {
   const monthesNames: {
@@ -8,12 +8,12 @@ export const getMonthesNames = (locale: string = 'default') => {
     date: ReturnType<typeof createDate>['date'];
   }[] = Array.from({ length: 12 });
 
-  const d = new Date();
+  const today = new Date();
 
   monthesNames.forEach((_, i) => {
     const { month, monthIndex, monthShort, date } = createDate({
       locale,
-      date: new Date(d.getFullYear(), d.getMonth() + i, 1),
+      date: new Date(today.getFullYear(), today.getMonth() + i, 1),
     });
 
     monthesNames[monthIndex] = { month, monthIndex, monthShort, date };

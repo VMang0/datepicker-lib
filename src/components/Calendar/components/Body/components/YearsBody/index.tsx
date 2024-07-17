@@ -4,7 +4,7 @@ import { MonthsYearsBodyContainer } from '@components/Calendar/components/Body/c
 import { BodyItem } from '@components/Calendar/components/Body/styled';
 import { BodyType } from '@components/Calendar/components/Body/types';
 import { CalendarMode } from '@constants/calendar';
-import { checkIsDateInCalendarRange } from '@utils/helpers/checkIsDateInCalendarRange';
+import { checkIsDateInCalendarRange } from '@utils/checkIsDateInCalendarRange';
 
 export const YearsBody: FC<BodyType> = ({ calendarState, setMode, setSelectedYear, maxRangeDate, minRangeDate }) => {
   const onYearClick = (year: number, isYearInRange: boolean) => () => {

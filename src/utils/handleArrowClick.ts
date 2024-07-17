@@ -1,7 +1,7 @@
 import { ArrowDirection, CALENDAR_RANGE, CalendarMode, YEARS_PERIOD } from '@constants/calendar';
 import { ComponentsProps } from '@type/calendar';
-import { createMonth } from '@utils/helpers/createMonth';
-import { getYearsInterval } from '@utils/helpers/getYearsInterval';
+import { createMonth } from '@utils/createMonth';
+import { getYearsInterval } from '@utils/getYearsInterval';
 
 export const handleArrowClick = ({
   direction = ArrowDirection.LEFT,

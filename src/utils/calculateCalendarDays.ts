@@ -1,6 +1,6 @@
 import { DateType, MonthInfoType } from '@type/calendar';
-import { createMonth } from '@utils/helpers/createMonth';
-import { getMonthNumberOfDays } from '@utils/helpers/getMonthNumberOfDays';
+import { createMonth } from '@utils/createMonth';
+import { getMonthNumberOfDays } from '@utils/getMonthNumberOfDays';
 
 const DAYS_IN_WEEK = 7;
 

@@ -6,7 +6,7 @@ import { formatDateToMask } from '@components/Inputs/utils/formatDateToMask';
 import { getDateFromSlashType } from '@components/Inputs/utils/getDateFromSlashType';
 import { isValidDate } from '@components/Inputs/utils/isValidDate';
 import { parseDateToMask } from '@components/Inputs/utils/parseDateToMask';
-import { checkIsDateInCalendarRange } from '@utils/helpers/checkIsDateInCalendarRange';
+import { checkIsDateInCalendarRange } from '@utils/checkIsDateInCalendarRange';
 
 export const DateInput: FC<DateInputPropsType> = ({
   selectDate,

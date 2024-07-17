@@ -1,6 +1,6 @@
 import { MonthInfoType } from '@type/calendar';
+import { createDate } from '@utils/createDate';
 
-import { createDate } from './createDate';
 import { getMonthNumberOfDays } from './getMonthNumberOfDays';
 
 type CreateMonthParams = {

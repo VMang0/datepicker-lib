@@ -1,4 +1,4 @@
-import { isValidLocale } from '@utils/helpers/isValidLocale';
+import { isValidLocale } from '@utils/isValidLocale';
 
 describe('isValidLocale', () => {
   test('should return true for a valid locale', () => {

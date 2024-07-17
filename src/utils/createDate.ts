@@ -1,6 +1,6 @@
 import { DateType } from '@type/calendar';
-import { getWeekNumber } from '@utils/helpers/getWeekNumber';
-import { isValidLocale } from '@utils/helpers/isValidLocale';
+import { getWeekNumber } from '@utils/getWeekNumber';
+import { isValidLocale } from '@utils/isValidLocale';
 
 type CreateDateParams = {
   locale?: string;

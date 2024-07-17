@@ -1,4 +1,4 @@
-import { checkDateIsEqual } from '@utils/helpers/checkDateIsEqual';
+import { checkDateIsEqual } from '@utils/checkDateIsEqual';
 
 describe('checkDateIsEqual', () => {
   test('should return true for dates with the same day, month, and year', () => {

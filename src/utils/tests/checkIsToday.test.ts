@@ -1,4 +1,4 @@
-import { checkIsToday } from '@utils/helpers/checkIsToday';
+import { checkIsToday } from '@utils/checkIsToday';
 
 describe('checkIsToday', () => {
   const today = new Date();

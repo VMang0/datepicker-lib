@@ -1,4 +1,4 @@
-import { checkDateIsEqual } from './checkDateIsEqual';
+import { checkDateIsEqual } from '@utils/checkDateIsEqual';
 
 export const checkIsToday = (date: Date) => {
   const today = new Date();

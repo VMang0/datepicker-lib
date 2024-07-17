@@ -1,5 +1,5 @@
 import { FirstWeekDay } from '@constants/calendar';
-import { getFirstWeekDayIndex } from '@utils/helpers/getFirstWeekDayIndex';
+import { getFirstWeekDayIndex } from '@utils/getFirstWeekDayIndex';
 
 describe('getFirstWeekDayIndex', () => {
   test('should return 2 for MONDAY', () => {

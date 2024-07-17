@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
 import { FirstWeekDay } from '@constants/calendar';
-import { getWeekDaysNames } from '@utils/helpers';
-import { getFirstWeekDayIndex } from '@utils/helpers/getFirstWeekDayIndex';
+import { getFirstWeekDayIndex } from '@utils/getFirstWeekDayIndex';
+import { getWeekDaysNames } from '@utils/getWeekDaysNames';
 
 type UseWeekDaysParamsType = {
   firstWeekDay: FirstWeekDay;

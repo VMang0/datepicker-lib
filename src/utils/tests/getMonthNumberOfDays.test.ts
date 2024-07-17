@@ -1,4 +1,4 @@
-import { getMonthNumberOfDays } from '@utils/helpers/getMonthNumberOfDays';
+import { getMonthNumberOfDays } from '@utils/getMonthNumberOfDays';
 
 describe('getMonthNumberOfDays', () => {
   test('should return 31 days for January', () => {

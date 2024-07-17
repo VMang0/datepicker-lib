@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { TasksStatus } from '@constants/calendar';
 import { useStorage } from '@hooks/useStorage';
 import { TaskMapType, TaskType } from '@type/tasks';
-import { generateUniqueId } from '@utils/helpers/generateUniqueId';
+import { generateUniqueId } from '@utils/generateUniqueId';
 
 export const useTasks = ({ date }: { date?: Date } = {}) => {
   const { addToStorage, getFromStorage } = useStorage();

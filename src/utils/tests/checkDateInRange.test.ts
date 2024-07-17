@@ -1,4 +1,4 @@
-import { checkDateInSelectedRange } from '@utils/helpers/checkDateInSelectedRange';
+import { checkDateInSelectedRange } from '@utils/checkDateInSelectedRange';
 
 describe('checkDateInRange', () => {
   test('should return true if date is within the range', () => {
