@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'styled-components';
 
-export const theme: DefaultTheme = {
+export const customTheme: DefaultTheme = {
   colors: {
     blue: {
       DEFAULT: '#2F80ED',

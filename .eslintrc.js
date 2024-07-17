@@ -41,7 +41,7 @@ module.exports = {
           ['@constants', './src/constants'],
           ['@hooks', './src/hooks'],
           ['@utils', './src/utils'],
-          ['@styled', './src/styled'],
+          ['@theme', './src/theme'],
           ['@redux', './src/redux'],
           ['@routes', './src/routes'],
           ['@services', './src/services'],

@@ -21,7 +21,7 @@ const config: StorybookConfig = {
       '@constants': path.resolve(__dirname, '../src/constants'),
       '@hooks': path.resolve(__dirname, '../src/hooks'),
       '@utils': path.resolve(__dirname, '../src/utils'),
-      '@styled': path.resolve(__dirname, '../src/styled'),
+      '@theme': path.resolve(__dirname, '../src/theme'),
       '@redux': path.resolve(__dirname, '../src/redux'),
       '@routes': path.resolve(__dirname, '../src/routes'),
       '@services': path.resolve(__dirname, '../src/services'),

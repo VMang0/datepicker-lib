@@ -1,4 +1,4 @@
-import { theme } from '@styled/theme';
+import { customTheme } from '@theme/customTheme';
 
 export enum ArrowDirection {
   LEFT = 'left',
@@ -29,4 +29,4 @@ export const CALENDAR_RANGE = {
   maxDate: { year: 2300, month: 12, day: 31 },
 };
 
-export const HOLIDAY_COLOR = theme.colors.gray[200];
+export const HOLIDAY_COLOR = customTheme.colors.gray[200];
