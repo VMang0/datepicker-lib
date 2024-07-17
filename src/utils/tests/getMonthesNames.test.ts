@@ -48,12 +48,12 @@ describe('getMonthesNames', () => {
         monthShort: monthShortNames[monthIndex],
         monthIndex,
         date,
-        day: date.toLocaleDateString('default', { weekday: 'long' }),
-        dayShort: date.toLocaleDateString('default', { weekday: 'short' }),
+        day: date.toLocaleDateString('ru-RU', { weekday: 'long' }),
+        dayShort: date.toLocaleDateString('ru-RU', { weekday: 'short' }),
         dayNumber: date.getDate(),
         dayNumberInWeek: date.getDay() + 1,
         year: today.getFullYear(),
-        yearShort: date.toLocaleDateString('default', { year: '2-digit' }),
+        yearShort: date.toLocaleDateString('ru-RU', { year: '2-digit' }),
         monthNumber: date.getMonth() + 1,
         timestamp: date.getTime(),
         week: getWeekNumber(date),
@@ -62,7 +62,7 @@ describe('getMonthesNames', () => {
   });
 
   it('should return the correct short month names', () => {
-    const monthes = getMonthesNames('default');
+    const monthes = getMonthesNames('ru-RU');
     const shortNames = monthes.map((m) => m.monthShort);
     expect(shortNames).toEqual([
       'янв.',
@@ -81,13 +81,13 @@ describe('getMonthesNames', () => {
   });
 
   it('should return the correct month indices', () => {
-    const monthes = getMonthesNames('default');
+    const monthes = getMonthesNames('ru-RU');
     const indices = monthes.map((m) => m.monthIndex);
     expect(indices).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   });
 
   it('should return the correct full month names', () => {
-    const monthes = getMonthesNames('default');
+    const monthes = getMonthesNames('ru-RU');
     const monthNames = monthes.map((m) => m.month);
     expect(monthNames).toEqual([
       'январь',

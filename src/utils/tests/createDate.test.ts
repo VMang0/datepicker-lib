@@ -10,12 +10,12 @@ const mockIsValidLocale = isValidLocale as jest.MockedFunction<typeof isValidLoc
 
 describe('createDate', () => {
   beforeEach(() => {
-    mockIsValidLocale.mockImplementation((locale) => locale === 'en' || locale === 'default');
+    mockIsValidLocale.mockImplementation((locale) => locale === 'en' || locale === 'ru-RU');
   });
 
   it('should return correct date properties with default locale', () => {
     const date = new Date('2025-07-10');
-    const result = createDate({ date });
+    const result = createDate({ date, locale: 'ru-RU' });
 
     expect(result.date).toBe(date);
     expect(result.dayNumber).toBe(10);
@@ -73,7 +73,7 @@ describe('createDate', () => {
 
   it('should return the correct day properties for a different date', () => {
     const date = new Date('2025-01-01');
-    const result = createDate({ date });
+    const result = createDate({ date, locale: 'ru-RU' });
 
     expect(result.date).toBe(date);
     expect(result.dayNumber).toBe(1);
@@ -92,17 +92,17 @@ describe('createDate', () => {
 
   it('should handle the current date correctly', () => {
     const date = new Date();
-    const result = createDate({ date });
+    const result = createDate({ date, locale: 'ru-RU' });
 
     expect(result.date).toBe(date);
     expect(result.dayNumber).toBe(date.getDate());
-    expect(result.day).toBe(date.toLocaleDateString('default', { weekday: 'long' }));
+    expect(result.day).toBe(date.toLocaleDateString('ru-RU', { weekday: 'long' }));
     expect(result.dayNumberInWeek).toBe(date.getDay() + 1);
-    expect(result.dayShort).toBe(date.toLocaleDateString('default', { weekday: 'short' }));
+    expect(result.dayShort).toBe(date.toLocaleDateString('ru-RU', { weekday: 'short' }));
     expect(result.year).toBe(date.getFullYear());
-    expect(result.yearShort).toBe(date.toLocaleDateString('default', { year: '2-digit' }));
-    expect(result.month).toBe(date.toLocaleDateString('default', { month: 'long' }));
-    expect(result.monthShort).toBe(date.toLocaleDateString('default', { month: 'short' }));
+    expect(result.yearShort).toBe(date.toLocaleDateString('ru-RU', { year: '2-digit' }));
+    expect(result.month).toBe(date.toLocaleDateString('ru-RU', { month: 'long' }));
+    expect(result.monthShort).toBe(date.toLocaleDateString('ru-RU', { month: 'short' }));
     expect(result.monthNumber).toBe(date.getMonth() + 1);
     expect(result.monthIndex).toBe(date.getMonth());
     expect(result.timestamp).toBe(date.getTime());
