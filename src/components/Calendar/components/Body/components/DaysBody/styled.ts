@@ -78,3 +78,5 @@ export const CalendarDay = styled.div<CalendarDayProps>`
     color: ${({ theme }) => theme.colors.black.DEFAULT};
   }
 `;
+
+export const WeekdayName = styled.span``;

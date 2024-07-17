@@ -1,4 +1,4 @@
-import { ArrowDirection, CalendarMode, FirstWeekDay, HOLIDAY_COLOR } from '@constants/calendar';
+import { ArrowDirection, CalendarMode, FirstWeekDay } from '@constants/calendar';
 import { HolidayType } from '@constants/holidays';
 
 export type DateType = {
@@ -48,8 +48,8 @@ export type CalendarProps = {
   isShowWeekends?: boolean;
   isShowHolidays?: boolean;
   holidays?: HolidayType[];
-  holidayColor?: HOLIDAY_COLOR | string;
-  styledCalendarPosition: 'absolute' | 'block';
+  holidayColor?: string;
+  styledCalendarPosition?: 'absolute' | 'block';
 };
 
 export type ComponentsProps = CalendarProps & {
@@ -90,9 +90,4 @@ export type UseCalendarParamsType = {
 export type ReturnValuesUseCalendarType = {
   state: CalendarStateType;
   functions: CalendarFuncType;
-};
-
-export type CalendarRange = {
-  minDate: DayOfRange;
-  maxDate: DayOfRange;
 };

@@ -1,3 +1,5 @@
+import { DayOfRange } from '@type/calendar';
+
 export type DateRangeInputPropsType = {
   selectedStartDate: Date;
   setSelectedStartDate: (value: Date) => void;
@@ -8,6 +10,8 @@ export type DateRangeInputPropsType = {
   onFocus: () => void;
   isCalendarOpen: boolean;
   handleOpenCalendarState: () => void;
+  minRangeDate?: DayOfRange;
+  maxRangeDate?: DayOfRange;
 };
 
 export type DateInputPropsType = {
@@ -17,4 +21,6 @@ export type DateInputPropsType = {
   onFocus: () => void;
   handleOpenCalendarState: () => void;
   isCalendarOpen: boolean;
+  minRangeDate?: DayOfRange;
+  maxRangeDate?: DayOfRange;
 };

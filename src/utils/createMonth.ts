@@ -12,8 +12,8 @@ export const createMonth = (params?: CreateMonthParams): MonthInfoType => {
   const date = params?.date ?? new Date();
   const locale = params?.locale ?? 'default';
 
-  const d = createDate({ date, locale });
-  const { month: monthName, year, monthNumber, monthIndex } = d;
+  const day = createDate({ date, locale });
+  const { month: monthName, year, monthNumber, monthIndex } = day;
 
   const getDay = (dayNumber: number) => createDate({ date: new Date(year, monthIndex, dayNumber), locale });
 
