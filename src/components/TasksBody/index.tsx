@@ -4,6 +4,7 @@ import { ControlPanel } from '@components/TasksBody/components/ControlPanel';
 import { TasksList } from '@components/TasksBody/components/TasksList';
 import { TasksBodyContainer } from '@components/TasksBody/styled';
 import { TasksBodyType } from '@components/TasksBody/types';
+import { TASK_BODY_TEST_ID } from '@constants/tests';
 import { useTasks } from '@hooks/useTasks';
 
 export const TasksBody: FC<TasksBodyType> = ({ closeTasks, selectedDate }) => {
@@ -12,7 +13,7 @@ export const TasksBody: FC<TasksBodyType> = ({ closeTasks, selectedDate }) => {
   const currentTasks = tasks[selectedDate.date.toString()];
 
   return (
-    <TasksBodyContainer>
+    <TasksBodyContainer data-testid={TASK_BODY_TEST_ID}>
       <ControlPanel addTask={addTask} closeTasks={closeTasks} selectedDate={selectedDate} />
       <TasksList
         tasks={currentTasks}

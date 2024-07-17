@@ -2,18 +2,17 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { ArrowDirection, CalendarMode, FirstWeekDay } from '@constants/calendar';
 import { DateType, ReturnValuesUseCalendarType, UseCalendarParamsType } from '@type/calendar';
-import { createDate, createMonth } from '@utils/helpers';
-import { calculateCalendarDays } from '@utils/helpers/calculateCalendarDays';
-import { getFirstWeekDayIndex } from '@utils/helpers/getFirstWeekDayIndex';
-import { getYearsInterval } from '@utils/helpers/getYearsInterval';
-import { handleArrowClick } from '@utils/helpers/handleArrowClick';
+import { calculateCalendarDays } from '@utils/calculateCalendarDays';
+import { createDate } from '@utils/createDate';
+import { createMonth } from '@utils/createMonth';
+import { getFirstWeekDayIndex } from '@utils/getFirstWeekDayIndex';
+import { getYearsInterval } from '@utils/getYearsInterval';
+import { handleArrowClick } from '@utils/handleArrowClick';
 
 export const useCalendar = ({
   locale = 'default',
   selectedDate: date,
   firstWeekDay = FirstWeekDay.MONDAY,
-  maxYear = new Date().getFullYear() + 10,
-  minYear = new Date().getFullYear(),
 }: UseCalendarParamsType): ReturnValuesUseCalendarType => {
   const [mode, setMode] = useState<CalendarMode>(CalendarMode.DAY);
   const [selectedDay, setSelectedDay] = useState(createDate({ date }));
@@ -21,9 +20,8 @@ export const useCalendar = ({
   const [selectedMonth, setSelectedMonth] = useState(
     createMonth({ date: new Date(selectedDay.year, selectedDay.monthIndex), locale }),
   );
-  const [selectedYearsInterval, setSelectedYearsInterval] = useState<number[]>(
-    getYearsInterval(minYear, minYear, maxYear),
-  );
+
+  const [selectedYearsInterval, setSelectedYearsInterval] = useState<number[]>(getYearsInterval(date.getFullYear()));
 
   const firstWeekDayIndex = getFirstWeekDayIndex(firstWeekDay);
 
@@ -41,8 +39,6 @@ export const useCalendar = ({
       selectedMonth,
       selectedYear,
       selectedYearsInterval,
-      minYear,
-      maxYear,
       locale,
       setSelectedYear,
       setSelectedYearsInterval,
@@ -54,7 +50,13 @@ export const useCalendar = ({
   };
 
   useEffect(() => {
-    setSelectedDay(createDate({ date }));
+    const newDate = createDate({ date });
+    if (newDate !== selectedDay) {
+      setSelectedDay(createDate({ date }));
+      setSelectedYear(newDate.year);
+      setSelectedMonth(createMonth({ date: new Date(newDate.year, newDate.monthIndex), locale }));
+      setSelectedYearsInterval(getYearsInterval(newDate.year));
+    }
   }, [date]);
 
   return {

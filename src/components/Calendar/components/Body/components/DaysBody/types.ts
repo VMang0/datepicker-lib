@@ -8,8 +8,10 @@ export type CalendarDayProps = {
   isDateStartPeriod: boolean;
   isDateEndPeriod: boolean;
   isHoliday: boolean;
+  holidayColor: string;
   isWeekendDay: boolean;
   isDayHaveTasks: boolean;
+  isDayNotInRange: boolean;
 };
 
 export type DaysBodyType = BodyType & { openTasks: () => void };

@@ -9,6 +9,7 @@ import {
 } from '@components/TasksBody/components/TaskItem/styled';
 import { TaskItemPropsType } from '@components/TasksBody/components/TaskItem/types';
 import { TasksStatus } from '@constants/calendar';
+import { DELETE_TASK_TEST_ID, INPUT_TASK_TEST_ID } from '@constants/tests';
 
 export const TaskItem: FC<TaskItemPropsType> = ({ task, currentTasksDate, updateTask, deleteTask }) => {
   const handleChangeTitle: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -31,9 +32,9 @@ export const TaskItem: FC<TaskItemPropsType> = ({ task, currentTasksDate, update
 
   return (
     <TaskItemContainer>
-      <TaskInput defaultValue={task.title} onBlur={handleChangeTitle} />
+      <TaskInput defaultValue={task.title} onBlur={handleChangeTitle} data-testid={INPUT_TASK_TEST_ID} />
       <StatusBadge type="button" onClick={handleChangeStatus} status={task.status} />
-      <DeleteButton type="button" onClick={handleDeleteTask}>
+      <DeleteButton type="button" onClick={handleDeleteTask} data-testid={DELETE_TASK_TEST_ID}>
         <DeleteIcon />
       </DeleteButton>
     </TaskItemContainer>

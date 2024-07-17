@@ -1,3 +1,3 @@
 export { DatePicker } from '@components/DatePicker';
-export { DateRangePicker } from '@components/DateRangePicker';
+export { RangeDatePicker } from '@components/RangeDatePicker';
 export { TaskCalendar } from '@components/TaskCalendar';

@@ -25,14 +25,14 @@ export const CalendarDays = styled.div`
 `;
 
 export const CalendarDay = styled.div<CalendarDayProps>`
-  cursor: pointer;
-  position: relative;
+  cursor: ${({ isDayNotInRange }) => (isDayNotInRange ? 'not-allowed' : 'pointer')};
   padding: ${({ theme }) => theme.spaces.xs};
   outline: ${({ isDayHaveTasks, theme }) => (isDayHaveTasks ? `1px solid ${theme.colors.blue.DEFAULT}` : 'none')};
-  border-radius: ${({ isInRange, isDateStartPeriod, isDateEndPeriod, theme }) => {
+  border-radius: ${({ isInRange, isDateStartPeriod, isDateEndPeriod, isDayNotInRange, theme }) => {
     if (isInRange && !isDateStartPeriod && !isDateEndPeriod) return 0;
     if (isDateStartPeriod) return `${theme.borderRadius.m} 0 0 ${theme.borderRadius.m}`;
     if (isDateEndPeriod) return `0 ${theme.borderRadius.m} ${theme.borderRadius.m} 0`;
+    if (isDayNotInRange) return 0;
     return theme.borderRadius.m;
   }};
   color: ${({
@@ -42,12 +42,14 @@ export const CalendarDay = styled.div<CalendarDayProps>`
     isDateStartPeriod,
     isDateEndPeriod,
     isWeekendDay,
-    theme,
+    isDayNotInRange,
     isHoliday,
+    theme,
   }) => {
     if (isAdditionalDay && !isWeekendDay && !isHoliday) return theme.colors.gray[400];
     if (isInRange && !isDateStartPeriod && !isDateEndPeriod) return theme.colors.blue.DEFAULT;
     if (isSelectedDay || isDateStartPeriod || isDateEndPeriod) return theme.colors.white.DEFAULT;
+    if (isDayNotInRange) return theme.colors.gray[400];
     return theme.colors.black.DEFAULT;
   }};
   background: ${({
@@ -57,18 +59,24 @@ export const CalendarDay = styled.div<CalendarDayProps>`
     isDateStartPeriod,
     isDateEndPeriod,
     isHoliday,
+    holidayColor,
     isWeekendDay,
+    isDayNotInRange,
     theme,
   }) => {
     if ((isSelectedDay || isDateEndPeriod) && !isDateStartPeriod) return theme.colors.blue.DEFAULT;
     if (isToday && !isInRange) return theme.colors.gray[200];
     if (isDateStartPeriod) return theme.colors.blue[200];
-    if (isHoliday && !isWeekendDay && !isInRange) return theme.colors.gray[300];
+    if (isHoliday && !isWeekendDay && !isInRange) return holidayColor;
     if (isWeekendDay && !isInRange) return theme.colors.red.DEFAULT;
     if (isInRange && !isDateStartPeriod && !isDateEndPeriod) return theme.colors.blue[100];
+    if (isDayNotInRange) return theme.colors.gray[100];
     return 'transparent';
   }};
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray[100]};
+    color: ${({ theme }) => theme.colors.black.DEFAULT};
   }
 `;
+
+export const WeekdayName = styled.span``;

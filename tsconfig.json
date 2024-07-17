@@ -29,11 +29,11 @@
       "@constants/*": ["src/constants/*"],
       "@hooks/*": ["src/hooks/*"],
       "@utils/*": ["src/utils/*"],
-      "@styled/*": ["src/styled/*"],
+      "@theme/*": ["src/theme/*"],
       "@redux/*": ["src/redux/*"],
       "@routes/*": ["src/routes/*"],
       "@services/*": ["src/services/*"],
-      "@api/*": ["src/api/*"],
+      "@hocs/*": ["src/hocs/*"],
       "@type/*": ["src/type/*"]
     }
   },
@@ -42,7 +42,5 @@
     "node_modules",
     "dist",
     "storybook-static",
-    "src/**/*.stories.tsx",
-    "src/**/*.stories.tsx",
   ]
 }

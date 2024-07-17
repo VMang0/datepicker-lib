@@ -8,16 +8,18 @@ export const BodyContainer = styled.div`
 `;
 
 export const BodyItem = styled.div<BodyItemType>`
-  cursor: pointer;
-  border-radius: ${({ theme }) => theme.borderRadius.m};
+  cursor: ${({ isItemNotInRange }) => (isItemNotInRange ? 'not-allowed' : 'pointer')};
+  border-radius: ${({ isItemNotInRange, theme }) => (isItemNotInRange ? 0 : theme.borderRadius.m)};
   padding: ${({ theme }) => `${theme.spaces.s} ${theme.spaces.m}`};
-  color: ${({ isSelectedItem, theme }) => {
+  color: ${({ isSelectedItem, isItemNotInRange, theme }) => {
     if (isSelectedItem) return theme.colors.white.DEFAULT;
+    if (isItemNotInRange) return theme.colors.gray[400];
     return theme.colors.black.DEFAULT;
   }};
-  background-color: ${({ isSelectedItem, isCurrentItem, theme }) => {
+  background-color: ${({ isSelectedItem, isCurrentItem, isItemNotInRange, theme }) => {
     if (isSelectedItem) return theme.colors.blue.DEFAULT;
     if (isCurrentItem) return theme.colors.gray[200];
+    if (isItemNotInRange) return theme.colors.gray[100];
     return 'transparent';
   }};
 `;
