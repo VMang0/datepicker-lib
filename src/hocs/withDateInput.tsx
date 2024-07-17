@@ -1,9 +1,9 @@
 import React, { ComponentType, useRef, useState } from 'react';
 
 import { DateInput } from '@components/Inputs/components/DateInput';
+import { MainContainer } from '@hocs/styled';
 import { useClickOutside } from '@hooks/useClickOutside';
 import { CalendarProps } from '@type/calendar';
-import { MainContainer } from '@utils/hocs/styled';
 
 export const withDateInput = (Component: ComponentType<CalendarProps>) => (props: CalendarProps) => {
   const [selectedDate, setSelectedDate] = useState(new Date());

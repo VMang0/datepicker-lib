@@ -90,7 +90,7 @@ export default [
           { find: '@redux', replacement: path.resolve(projectRootDir, 'src/redux') },
           { find: '@routes', replacement: path.resolve(projectRootDir, 'src/routes') },
           { find: '@services', replacement: path.resolve(projectRootDir, 'src/services') },
-          { find: '@api', replacement: path.resolve(projectRootDir, 'src/api') },
+          { find: '@hocs', replacement: path.resolve(projectRootDir, 'src/hocs') },
           { find: '@type', replacement: path.resolve(projectRootDir, 'src/type') },
         ],
       }),

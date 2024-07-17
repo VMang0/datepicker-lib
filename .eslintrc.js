@@ -45,7 +45,7 @@ module.exports = {
           ['@redux', './src/redux'],
           ['@routes', './src/routes'],
           ['@services', './src/services'],
-          ['@api', './src/api'],
+          ['@hocs', './src/hocs'],
           ['@type', './src/type'],
         ],
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
