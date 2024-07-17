@@ -4,10 +4,12 @@ import {
   CalendarDay,
   CalendarDays,
   CalendarWeek,
+  WeekdayName,
 } from '@components/Calendar/components/Body/components/DaysBody/styled';
 import { DaysBodyType } from '@components/Calendar/components/Body/components/DaysBody/types';
 import { getHolidayName } from '@components/Calendar/components/Body/components/DaysBody/utils/getHolidaysName';
 import { isWeekendDay } from '@components/Calendar/components/Body/components/DaysBody/utils/isWeekendDay';
+import { CALENDAR_DAY_TEST_ID } from '@constants/tests';
 import { useTasks } from '@hooks/useTasks';
 import { useWeekDays } from '@hooks/useWeekDays';
 import { DateType } from '@type/calendar';
@@ -35,6 +37,7 @@ export const DaysBody: FC<DaysBodyType> = memo(
     holidayColor,
   }) => {
     const weekDays = useWeekDays({ firstWeekDay, locale });
+
     const { tasks } = useTasks();
 
     const onDayClick = (day: DateType, isDayInRange: boolean) => () => {
@@ -55,7 +58,7 @@ export const DaysBody: FC<DaysBodyType> = memo(
       <>
         <CalendarWeek>
           {weekDays.map((weekDaysName) => (
-            <span key={weekDaysName.dayShort}>{weekDaysName.dayShort}</span>
+            <WeekdayName key={weekDaysName.dayShort}>{weekDaysName.dayShort}</WeekdayName>
           ))}
         </CalendarWeek>
         <CalendarDays>
@@ -88,6 +91,7 @@ export const DaysBody: FC<DaysBodyType> = memo(
                 isWeekendDay={isWeekend}
                 isDayHaveTasks={isDayHaveTasks}
                 isDayNotInRange={!isDayInRange}
+                data-testid={CALENDAR_DAY_TEST_ID}
               >
                 {day.dayNumber}
               </CalendarDay>

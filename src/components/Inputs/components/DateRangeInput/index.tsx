@@ -1,11 +1,12 @@
 import React, { ChangeEventHandler, FC, useEffect, useState } from 'react';
 
-import { CalendarIcon, ClearIcon, DateInputContainer, Input } from '@components/Inputs/components/DateInput/styled';
+import { CalendarIcon, ClearIcon, DateInputContainer, Input } from '@components/Inputs/styled';
 import { DateRangeInputPropsType } from '@components/Inputs/types';
 import { formatInputRangeValue } from '@components/Inputs/utils/formatInputRangeValue';
 import { getDateFromSlashType } from '@components/Inputs/utils/getDateFromSlashType';
 import { isRangeDatesValid } from '@components/Inputs/utils/isValidDate';
 import { parseDateToMask } from '@components/Inputs/utils/parseDateToMask';
+import { RANGE_DATEPICKER_TEST_ID } from '@constants/tests';
 import { checkIsDateInCalendarRange } from '@utils/checkIsDateInCalendarRange';
 import { checkIsRangeCorrect } from '@utils/checkIsRangeCorrect';
 
@@ -72,6 +73,7 @@ export const DateRangeInput: FC<DateRangeInputPropsType> = ({
         onChange={handleChange}
         maxLength={23}
         onFocus={onFocus}
+        data-testid={RANGE_DATEPICKER_TEST_ID}
       />
       {dateRange && isClearDate && <ClearIcon onClick={handleClear} />}
     </DateInputContainer>

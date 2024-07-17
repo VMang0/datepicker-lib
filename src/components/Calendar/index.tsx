@@ -7,6 +7,7 @@ import { CalendarContainer } from '@components/Calendar/styled';
 import { ErrorBoundary } from '@components/ErrorBoundary';
 import { FirstWeekDay, HOLIDAY_COLOR } from '@constants/calendar';
 import { Holidays } from '@constants/holidays';
+import { CALENDAR_TEST_ID } from '@constants/tests';
 import { useCalendar } from '@hooks/useCalendar';
 import { CalendarProps } from '@type/calendar';
 
@@ -36,7 +37,7 @@ export const Calendar: FC<CalendarProps> = ({
   });
 
   return (
-    <CalendarContainer data-testid="calendar" position={styledCalendarPosition}>
+    <CalendarContainer data-testid={CALENDAR_TEST_ID} position={styledCalendarPosition}>
       <ErrorBoundary>
         <Header
           locale={locale}
