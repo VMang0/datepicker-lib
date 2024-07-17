@@ -1,9 +1,9 @@
 import React, { ComponentType, useRef, useState } from 'react';
 
 import { DateRangeInput } from '@components/Inputs/components/DateRangeInput';
+import { MainContainer } from '@hocs/styled';
 import { useClickOutside } from '@hooks/useClickOutside';
 import { CalendarProps } from '@type/calendar';
-import { MainContainer } from '@utils/hocs/styled';
 
 export const withRangeDateInput = (Component: ComponentType<CalendarProps>) => (props: CalendarProps) => {
   const [startDate, setStartDate] = useState(new Date());
@@ -12,15 +12,15 @@ export const withRangeDateInput = (Component: ComponentType<CalendarProps>) => (
   const calendarRef = useRef<HTMLDivElement>(null);
 
   const handleSelectDate = (date: Date) => {
-    if (!startDate || (startDate && endDate)) {
+    const isStartDateEmpty = !startDate;
+    const isRangeComplete = startDate && endDate;
+
+    if (isStartDateEmpty || isRangeComplete) {
       setStartDate(date);
       setEndDate(null);
-    } else if (startDate && !endDate) {
-      if (date >= startDate) {
-        setEndDate(date);
-      } else {
-        setStartDate(date);
-      }
+    } else {
+      setEndDate(date >= startDate ? date : null);
+      setStartDate(date < startDate ? date : startDate);
     }
   };
 
