@@ -1,6 +1,6 @@
 import { CalendarFuncType, CalendarProps, CalendarStateType } from '@type/calendar';
 
-export type BodyType = CalendarProps &
+export type BodyType = Omit<CalendarProps, 'styledCalendarPosition'> &
   Partial<CalendarFuncType> & {
     calendarState: CalendarStateType;
   };

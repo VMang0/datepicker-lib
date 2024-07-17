@@ -70,6 +70,7 @@ type SpacesType = {
   xs: '8px';
   s: '10px';
   m: '15px';
+  l: '45px';
   xl: '250px';
 };
 

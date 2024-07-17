@@ -8,7 +8,6 @@ export const DateInputContainer = styled.div<{ isError: boolean; isCalendarOpen:
   align-items: center;
   box-sizing: border-box;
   width: ${({ theme }) => theme.sizes.xl};
-  margin-bottom: ${({ theme }) => theme.spaces.xs};
   border-radius: ${({ theme }) => theme.borderRadius.m};
   padding: ${({ theme }) => `${theme.spaces.s} ${theme.spaces.xs}`};
   transition: border-color 0.2s ease-in-out;
@@ -24,6 +23,7 @@ export const DateInputContainer = styled.div<{ isError: boolean; isCalendarOpen:
 `;
 
 export const CalendarIcon = styled(Calendar)`
+  cursor: pointer;
   margin-right: ${({ theme }) => theme.spaces.xs};
   width: ${({ theme }) => theme.sizes.xs};
   height: ${({ theme }) => theme.sizes.xs};

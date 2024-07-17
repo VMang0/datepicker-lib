@@ -15,6 +15,8 @@ export const DateRangeInput: FC<DateRangeInputPropsType> = ({
   isClearDate = true,
   handleClearRange,
   onFocus,
+  isCalendarOpen,
+  handleOpenCalendarState,
 }) => {
   const [dateRange, setDateRange] = useState('');
   const [isInputError, setIsInputError] = useState(false);
@@ -49,8 +51,8 @@ export const DateRangeInput: FC<DateRangeInputPropsType> = ({
   }, [selectedStartDate, selectedEndDate]);
 
   return (
-    <DateInputContainer isError={isInputError}>
-      <CalendarIcon />
+    <DateInputContainer isError={isInputError} isCalendarOpen={isCalendarOpen}>
+      <CalendarIcon onClick={handleOpenCalendarState} />
       <Input
         type="text"
         placeholder="Choose Date Range"

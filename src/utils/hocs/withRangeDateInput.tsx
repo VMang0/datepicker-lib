@@ -1,12 +1,15 @@
-import React, { ComponentType, useState } from 'react';
+import React, { ComponentType, useRef, useState } from 'react';
 
 import { DateRangeInput } from '@components/Inputs/components/DateRangeInput';
+import { useClickOutside } from '@hooks/useClickOutside';
 import { CalendarProps } from '@type/calendar';
+import { MainContainer } from '@utils/hocs/styled';
 
 export const withRangeDateInput = (Component: ComponentType<CalendarProps>) => (props: CalendarProps) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const calendarRef = useRef<HTMLDivElement>(null);
 
   const handleSelectDate = (date: Date) => {
     if (!startDate || (startDate && endDate)) {
@@ -26,10 +29,16 @@ export const withRangeDateInput = (Component: ComponentType<CalendarProps>) => (
     setEndDate(new Date());
   };
 
-  const handleShowCalendar = () => setIsCalendarOpen((prevState) => !prevState);
+  const handleShowCalendar = () => setIsCalendarOpen(true);
+
+  const handleHideCalendar = () => setIsCalendarOpen(false);
+
+  const handleOpenCalendarState = () => (isCalendarOpen ? handleHideCalendar() : handleShowCalendar());
+
+  useClickOutside(calendarRef, handleHideCalendar);
 
   return (
-    <>
+    <MainContainer ref={calendarRef}>
       <DateRangeInput
         isClearDate={false}
         selectedStartDate={startDate}
@@ -38,6 +47,8 @@ export const withRangeDateInput = (Component: ComponentType<CalendarProps>) => (
         setSelectedEndDate={setEndDate}
         handleClearRange={handleClearRange}
         onFocus={handleShowCalendar}
+        isCalendarOpen={isCalendarOpen}
+        handleOpenCalendarState={handleOpenCalendarState}
       />
       {isCalendarOpen && (
         <Component
@@ -48,9 +59,10 @@ export const withRangeDateInput = (Component: ComponentType<CalendarProps>) => (
           isRenderFooter
           handleFooterClick={handleClearRange}
           footerTitle="Clear"
+          styledCalendarPosition="absolute"
           {...props}
         />
       )}
-    </>
+    </MainContainer>
   );
 };

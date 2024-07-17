@@ -14,6 +14,7 @@ export const DateInput: FC<DateInputPropsType> = ({
   isClearDate = true,
   onFocus,
   isCalendarOpen,
+  handleOpenCalendarState,
   minRangeDate = { year: new Date().getFullYear() - 74, month: 12, day: 1 },
   maxRangeDate = { year: new Date().getFullYear() + 74, month: 12, day: 1 },
 }) => {
@@ -53,7 +54,7 @@ export const DateInput: FC<DateInputPropsType> = ({
 
   return (
     <DateInputContainer isError={isInputError} isCalendarOpen={isCalendarOpen}>
-      <CalendarIcon />
+      <CalendarIcon onClick={handleOpenCalendarState} />
       <Input
         type="text"
         placeholder="Choose Date"
