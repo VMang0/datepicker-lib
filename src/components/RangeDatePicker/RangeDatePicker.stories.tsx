@@ -3,13 +3,13 @@ import { Meta, StoryObj } from '@storybook/react';
 import { FirstWeekDay, HOLIDAY_COLOR } from '@constants/calendar';
 import { Holidays } from '@constants/holidays';
 
-import { DatePicker } from './index';
+import { RangeDatePicker } from './index';
 
-type Story = StoryObj<typeof DatePicker>;
+type Story = StoryObj<typeof RangeDatePicker>;
 
-const meta: Meta<typeof DatePicker> = {
-  title: 'components/DatePicker',
-  component: DatePicker,
+const meta: Meta<typeof RangeDatePicker> = {
+  title: 'components/RangeDatePicker',
+  component: RangeDatePicker,
   parameters: {
     controls: {
       exclude: ['innerControl'],

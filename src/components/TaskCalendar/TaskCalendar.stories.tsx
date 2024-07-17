@@ -1,18 +1,15 @@
-import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+
+import { FirstWeekDay, HOLIDAY_COLOR } from '@constants/calendar';
+import { Holidays } from '@constants/holidays';
 
 import { TaskCalendar } from './index';
-import { FirstWeekDay } from '../../constants/calendar';
-import { Holidays } from '../../constants/holidays';
 
-export default {
+type Story = StoryObj<typeof TaskCalendar>;
+
+const meta: Meta<typeof TaskCalendar> = {
   title: 'components/TaskCalendar',
   component: TaskCalendar,
-  args: {
-    selectedDate: new Date(),
-    isShowWeekends: false,
-    isShowHolidays: false,
-    holidays: Holidays,
-  },
   parameters: {
     controls: {
       exclude: ['innerControl'],
@@ -20,27 +17,47 @@ export default {
   },
 };
 
-export const TaskCalendarStoryTemplate = ({ ...args }) => <TaskCalendar {...args} />;
-
-TaskCalendarStoryTemplate.storyName = 'TaskCalendar';
-
-export const WithEnglishLocale = TaskCalendarStoryTemplate.bind({});
-WithEnglishLocale.args = {
-  locale: 'en-US',
+export const Initial: Story = {
+  args: {},
 };
 
-export const WithChineseLocale = TaskCalendarStoryTemplate.bind({});
-WithChineseLocale.args = {
-  locale: 'zh-Hans-CN',
+export const WithEnglishLocale: Story = {
+  args: {
+    locale: 'en-US',
+  },
 };
 
-export const WithCustomYearLimit = TaskCalendarStoryTemplate.bind({});
-WithCustomYearLimit.args = {
-  maxYear: 2050,
-  minYear: 2020,
+export const WithChineseLocale: Story = {
+  args: {
+    locale: 'zh-Hans-CN',
+  },
 };
 
-export const StartWithSunday = TaskCalendarStoryTemplate.bind({});
-StartWithSunday.args = {
-  firstWeekDay: FirstWeekDay.SUNDAY,
+export const WithVisibleWeekends: Story = {
+  args: {
+    isShowWeekends: true,
+  },
 };
+
+export const WithVisibleHolidays: Story = {
+  args: {
+    isShowHolidays: true,
+    holidayColor: HOLIDAY_COLOR,
+    holidays: Holidays,
+  },
+};
+
+export const WithCustomRangeLimit: Story = {
+  args: {
+    minRangeDate: { year: new Date().getFullYear() - 10, month: 12, day: 1 },
+    maxRangeDate: { year: new Date().getFullYear() + 10, month: 12, day: 1 },
+  },
+};
+
+export const WithSundayStart: Story = {
+  args: {
+    firstWeekDay: FirstWeekDay.SUNDAY,
+  },
+};
+
+export default meta;
