@@ -6,6 +6,8 @@ import { formatInputRangeValue } from '@components/Inputs/utils/formatInputRange
 import { getDateFromSlashType } from '@components/Inputs/utils/getDateFromSlashType';
 import { isRangeDatesValid } from '@components/Inputs/utils/isValidDate';
 import { parseDateToMask } from '@components/Inputs/utils/parseDateToMask';
+import { checkIsDateInCalendarRange } from '@utils/checkIsDateInCalendarRange';
+import { checkIsRangeCorrect } from '@utils/checkIsRangeCorrect';
 
 export const DateRangeInput: FC<DateRangeInputPropsType> = ({
   selectedStartDate,
@@ -17,6 +19,8 @@ export const DateRangeInput: FC<DateRangeInputPropsType> = ({
   onFocus,
   isCalendarOpen,
   handleOpenCalendarState,
+  minRangeDate = { year: new Date().getFullYear() - 74, month: 12, day: 1 },
+  maxRangeDate = { year: new Date().getFullYear() + 74, month: 12, day: 1 },
 }) => {
   const [dateRange, setDateRange] = useState('');
   const [isInputError, setIsInputError] = useState(false);
@@ -40,10 +44,18 @@ export const DateRangeInput: FC<DateRangeInputPropsType> = ({
 
     setDateRange(formattedValue);
 
-    const isValid = isRangeDatesValid(formattedStart, formattedEnd);
-    setIsInputError(!isValid);
+    const isRangeValid = isRangeDatesValid(formattedStart, formattedEnd);
+    const startDate = getDateFromSlashType(formattedStart);
+    const endDate = getDateFromSlashType(formattedEnd);
 
-    if (isValid) updateSelectedDates(formattedStart, formattedEnd);
+    const isStartDateInCalendarRange = checkIsDateInCalendarRange(maxRangeDate, minRangeDate, startDate);
+    const isEndDateInCalendarRange = checkIsDateInCalendarRange(maxRangeDate, minRangeDate, endDate);
+    const isRangeCorrect = checkIsRangeCorrect(startDate, endDate);
+
+    const isValuesValid = isRangeValid && isStartDateInCalendarRange && isEndDateInCalendarRange && isRangeCorrect;
+    setIsInputError(!isValuesValid);
+
+    if (isValuesValid) updateSelectedDates(formattedStart, formattedEnd);
   };
 
   useEffect(() => {

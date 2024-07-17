@@ -40,6 +40,7 @@ export const withRangeDateInput = (Component: ComponentType<CalendarProps>) => (
   return (
     <MainContainer ref={calendarRef}>
       <DateRangeInput
+        {...props}
         isClearDate={false}
         selectedStartDate={startDate}
         setSelectedStartDate={setStartDate}
