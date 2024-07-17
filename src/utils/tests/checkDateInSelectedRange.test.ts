@@ -1,6 +1,6 @@
 import { checkDateInSelectedRange } from '@utils/checkDateInSelectedRange';
 
-describe('checkDateInRange', () => {
+describe('checkDateInSelectedRange', () => {
   test('should return true if date is within the range', () => {
     const date = new Date('2024-07-10');
     const startDate = new Date('2024-07-01');
