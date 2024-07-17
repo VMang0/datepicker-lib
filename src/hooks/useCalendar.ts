@@ -52,6 +52,9 @@ export const useCalendar = ({
     const newDate = createDate({ date });
     if (newDate !== selectedDay) {
       setSelectedDay(createDate({ date }));
+      setSelectedYear(newDate.year);
+      setSelectedMonth(createMonth({ date: new Date(newDate.year, newDate.monthIndex), locale }));
+      setSelectedYearsInterval(getYearsInterval(newDate.year));
     }
   }, [date]);
 
